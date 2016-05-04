@@ -1,0 +1,587 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300,600,700,900' rel='stylesheet' type='text/css'>
+        
+    <!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,500,900' rel='stylesheet' type='text/css'>-->
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="js/script.js" type="text/javascript"></script>
+    <title>Pet Shop App</title>
+</head>
+<body style="background-color: rgb(205, 205, 205);">
+    <!--<div id="loader_container" class="loader_container">
+        <img class="loader_inside" src="img/346.gif" alt="">
+        <span></span>
+    </div>-->
+    <div class="ctn-ppal">
+        <div class="ctn-header">
+            <!--<div id="menu-1" class="menu-app"></div>-->
+            <a id="back_link" href="home.html">
+                <div id="back" class="back_button">
+                    <img style="width: 100%; height: 100%" src="img/flecha_.png" alt=""></div>
+            </a>
+            <div class="icon_bone"></div>
+            <!--<div class="buscar-page" onclick=""><img id="Img2" src="img/lupa.png" /></div>-->
+            <!--<div class="log-page" onclick="showHideFilter()"><img id="imh-home" src="img/filtro.png" /></div>-->
+            <!--<div class="chat-page" onclick="viewCon()">
+                <img id="Img1" src="img/chat.png" /></div>-->
+        </div>
+        <div class="ctn-conte-wel" style="margin-top: 10px; background-color: rgb(205, 205, 205);">
+            <div id="manufacturer_message_form" class="conte-info">
+                <div class="form">
+                    <div id="headeForm" style="display: none">
+                        <input id="cancel" type="button" value="Cancel">
+                        <span style="font-size: 1rem; width: 100%; text-align: center; display: block; font-weight: 600;">Contact</span>
+                    </div>
+                    <div id="manufacturesIMG_content" class="manufacturesIMG_content">
+                    </div>
+                    <div style="width: 50%; display: inline-block">
+                        <div style="color: #37BEAF;font-size: 1.2rem;" class="manuData" id="manufacturesNAME"></div>
+                        <div class="manuData" id="manufacturesADD"></div>
+                        <div class="manuData" id="manufacturesYEAR"></div>
+
+                    </div>
+                    <textarea name="" id="message" cols="30" rows="10" style="margin-top: 40px; margin-bottom: 20px"></textarea>
+                    <div id="include_info" style="margin: 10px 0px;display:none;">
+                        <div class="roundedOne">
+                            <input id="personalInfo" style="color: transparent; opacity: 0; z-index: 99; position: absolute;" type="checkbox" value="None" id="Checkbox1" name="check" />
+                            <label for="roundedOne"></label>
+                        </div>
+                        <!--<input class="filt_imput" type="checkbox" id="personalInfo" name="personalInfo" value="Treats/Food" style="float:left;max-width: 20px;height: 20px;  margin-left: 20px !important;">-->
+                        <label id="personalInfo_label" for="personalInfo">
+                            Include my personal information
+                            <br>
+                            <span style="font-size: 0.7rem; color: rgb(116, 116, 116);">For security reasons this does not send your tax ID</span>.</label>
+                    </div>
+
+                    <!--<div class="con-btn">-->
+                    <input id="sendMessage" type="button" onclick="sendMessage()" value="Send to Manufacturer" style="float: right">
+                </div>
+
+                <!--</div>-->
+            </div>
+            <div class="enl-wel2" style="margin-top: -20px !important; display: inline-block !important; position: relative;">
+                <div id="contact" class="btn-welcome2 color2" style="font-size: 1.1rem; line-height: 2rem;">
+                    <img id="Img3" src="img/chat1.png" style="width: 20px; margin-bottom: -4px; margin-right: 5px;" />
+                    <span id="toSendMSG">Contact Manufacturer</span>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 15px; margin-bottom: 15px; width: 98%;" class="manuData" id="manufacturesKEYW"></div>
+            <div style="width:100%;max-width: 600px;margin-left: auto;margin-right: auto;">
+                <div style="left: 1%;" id="prods" class="colum-left">
+                </div>
+                <div id="prods1" class="colum-left">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="SocialSharing.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+</script>
+    <style>
+                #headeForm {
+            margin: 10px 0px;
+            display: block;
+            margin-bottom: 10px;
+            margin-top: -25px;
+            background-color: white;
+            padding: 5% 0%;
+            margin-left: -2%;
+            width: 104%;
+            border-radius: 20px 20px 0px 0px;
+        }
+
+        .messageForm input, .messageForm textarea {
+            display: inline-block !important;
+            border-radius: 5px;
+            border: solid 0px gray;
+            width: 95%;
+            height: 170px;
+            outline: none;
+            margin-left: -2%;
+            padding: 5%;
+        }
+        /* ROUNDED ONE */
+        .roundedOne {
+            width: 28px;
+            height: 28px;
+            float: left;
+            display: inline-block;
+            margin-left: 10px !important;
+            margin-top: 0px !Important;
+            background: #fcfff4;
+            background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            background: -o-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            background: -ms-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
+            margin: 20px auto;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+            -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+            -moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+            box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+            .roundedOne label {
+                cursor: pointer;
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                -webkit-border-radius: 50px;
+                -moz-border-radius: 50px;
+                border-radius: 50px;
+                left: 4px;
+                top: 4px;
+                -webkit-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+                -moz-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+                box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+                background: -webkit-linear-gradient(top, #222 0%, #45484d 100%);
+                background: -moz-linear-gradient(top, #222 0%, #45484d 100%);
+                background: -o-linear-gradient(top, #222 0%, #45484d 100%);
+                background: -ms-linear-gradient(top, #222 0%, #45484d 100%);
+                background: linear-gradient(top, #222 0%, #45484d 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222', endColorstr='#45484d',GradientType=0 );
+            }
+
+                .roundedOne label:after {
+                    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+                    filter: alpha(opacity=0);
+                    opacity: 0;
+                    content: '';
+                    position: absolute;
+                    width: 16px;
+                    height: 16px;
+                    background: #00BF9B;
+                    background: -webkit-linear-gradient(top, #00BF9B 0%, #00BF9B 100%);
+                    background: -moz-linear-gradient(top, #00BF9B 0%, #00BF9B 100%);
+                    background: -o-linear-gradient(top, #00BF9B 0%, #00BF9B 100%);
+                    background: -ms-linear-gradient(top, #00BF9B 0%, #00BF9B 100%);
+                    background: linear-gradient(top, #00BF9B 0%, #00BF9B 100%);
+                    -webkit-border-radius: 50px;
+                    -moz-border-radius: 50px;
+                    border-radius: 50px;
+                    top: 2px;
+                    left: 2px;
+                    -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+                    -moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+                    box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+                }
+
+                .roundedOne label:hover::after {
+                    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+                    filter: alpha(opacity=30);
+                    opacity: 0.3;
+                }
+
+            .roundedOne input[type=checkbox]:checked + label:after {
+                -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+                filter: alpha(opacity=100);
+                opacity: 1;
+            }
+
+        #sendMessage {
+            color: white;
+            width: 104%;
+            max-width: 1000px;
+            margin-bottom: -20px;
+            background-color: rgb(74, 182, 166);
+            border: none;
+            font-size: 1rem;
+            margin-right: -2%;
+            border-radius: 0px;
+            line-height: 0rem;
+        }
+
+        #cancel {
+            color: rgb(123, 123, 123);
+            float: left;
+            position: absolute;
+            background-color: transparent;
+            border: none;
+            text-align: left;
+            font-size: 1rem;
+            margin-top: -15px;
+            left: 20px;
+        }
+        .messageForm {
+            width: 96%;
+        }
+
+        .button_done_reg {
+            color: white;
+            background-color: rgb(88, 203, 199);
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .tags_class {
+            color: rgb(171, 171, 171);
+            background-color: rgb(234, 234, 234);
+            padding: 5px;
+            margin: 1%;
+            border-radius: 5px;
+        }
+        @media screen and (min-device-width: 520px) {
+            .form {
+                margin-top: -60px;
+            }
+
+            #cancel {
+                margin-top: -35px;
+            }
+
+            #headeForm {
+                padding: 3% 0%;
+            }
+
+            #sendMessage {
+                padding: 4%;
+            }
+        }
+    </style>
+    <div id="confirm_msj" class="confirm-msj top01">
+            <div class="div-reg-company centere">
+                <img id="img-reg-confim" class="confir-img" src="img/logo-confirmacion.png" alt="logo-confirm" />
+                <p class="reg-tex-s01">Congratulations!</p>
+                <p class="reg-tex-s02">You sent message!</p>
+                <div class="button_done_reg">Done</div>
+            </div>
+        </div>
+    <script type="text/javascript" src="js/moment.js"></script>
+</body>
+<script>
+    var url_service = "http://petretailapp-001-site1.btempurl.com/petretail";
+    //var url_service = "http://localhost:7850";
+    function showHideFilter() {
+        var fil = document.getElementById("filter").style.display.toString();
+        if (fil == "none") {
+            document.getElementById("filter").style.display = "inline-block";
+        } else {
+            document.getElementById("filter").style.display = "none";
+        }
+    }
+
+    function successFuncAw(data, status) {
+        if (data == false) {
+        } else {
+            productAWE.innerText = data;
+        }
+    }
+    function searchManufactures() {
+        var checkedValue = "";
+        var inputElements = document.getElementsByClassName('filt_imput');
+        for (var i = 0; inputElements[i]; ++i) {
+            if (inputElements[i].checked) {
+                checkedValue = checkedValue + "," + inputElements[i].value;
+            }
+        }
+        var checkedValue1 = "";
+        var inputElements1 = document.getElementsByClassName('filt_imput1');
+        for (var i = 0; inputElements1[i]; ++i) {
+            if (inputElements1[i].checked) {
+                checkedValue1 = checkedValue1 + "," + inputElements1[i].value;
+            }
+        }
+        setTimeout(location.replace("manufactures.html?par=" + checkedValue + "|" + checkedValue1 + "&User=" + $.urlParam('User')), 2000);
+    }
+    var user = "";
+    $(document).ready(function (e) {
+        $('#search').keyup(function (e) {
+            if (e.keyCode == 13) {
+                location.replace('results.html?User=' + $.urlParam('User') + "&searchBy=" + search.value.replace("'", "*"));
+            }
+        });
+        $('#contact').click(function () {
+            headeForm.style.display = "block";
+            //$("#manufacturer_message_form").css('top', "-25");
+
+            $("#manufacturer_message_form").addClass("messageForm");
+
+            personalInfo_label.style.display = "block";
+            $(".form").css({
+                'position': 'fixed',
+                'bottom': '0px',
+                'borderRadius': '20px 20px 0px 0px',
+                'width': '96%',
+                'marginLeft': '-2%'
+            });
+            manufacturesADD.style.display = "none";
+            //prod_N.style.display = "none";
+            manufacturesYEAR.style.display = "none";
+            manufacturesIMG_content.style.width = "50px";
+            manufacturesIMG_content.style.height = "50px";
+            manufacturesNAME.style.marginLeft = "-20px";
+            include_info.style.display = "block";
+        });
+        $('#cancel').click(function () {
+            headeForm.style.display = "none";
+            //$("#manufacturer_message_form").css('top', "-0");
+
+            message.value = "";
+            $("#manufacturer_message_form").removeClass("messageForm");
+
+            personalInfo_label.style.display = "none";
+            $(".form").css({
+                'position': '',
+                'bottom': '',
+                'borderRadius': '',
+                'width': '',
+                'marginLeft': ''
+            });
+            manufacturesADD.style.display = "block";
+            //prod_N.style.display = "block";
+            manufacturesYEAR.style.display = "block";
+            manufacturesIMG_content.style.width = "70px";
+            manufacturesIMG_content.style.height = "70px";
+            manufacturesNAME.style.marginLeft = "0px";
+            include_info.style.display = "none";
+        });
+        //loader_container.style.display = "inline-block";
+        $.urlParam = function (name) {
+            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results == null) {
+                return null;
+            }
+            else {
+                return results[1] || 0;
+            }
+        }
+        back_link.href = "home.html?User=" + $.urlParam('User');
+        user = $.urlParam('User');
+        $.ajax({
+            url: url_service + "/Home/getUsuario",
+            type: "POST",
+            dataType: "json",
+            data: { 'manufacturer_name': $.urlParam('Man').replace("*", "'").replace(/!/g, "&") },
+            success: successFuncgetUsuario
+        });
+        //windowheight = $(window).height();
+        //t = windowheight - 102;
+        //$(".ctn-ppal").css('height', t);
+    });
+    function viewCon() {
+        setTimeout(location.replace("messages.html?User=" + $.urlParam('User').replace(/%20/g, " ")), 2000);
+    }
+    $(".button_done_reg").click(function () {
+        var msj = document.getElementById("confirm_msj");
+        msj.style.display = "none";
+    });
+    function sendMessage() {
+        //loader_container.style.display = "inline-block";
+        var remember = document.getElementById('personalInfo');
+        var info = false;
+        if (remember.checked) {
+            info = true;
+        }
+        $.ajax({
+            url: url_service + "/Home/sendEmail",
+            type: "POST",
+            dataType: "json",
+            data: {
+                'retailer_name': $.urlParam('User'),
+                "manufacturer_name": manufacturesNAME.innerText,
+                "msg": message.value,
+                "senderType": "Retailer",
+                "personalInfo": info
+            },
+            success: function (data) {
+                if (data == true) {
+                    message.value = "";
+                    //loader_container.style.display = "none";
+                    //navigator.notification.confirm('Message sent', '', 'Notification', 'Ok');
+                    $("#manufacturer_message_form").removeClass("messageForm");
+                    var msj = document.getElementById("confirm_msj");
+                    msj.style.display = "block";
+                    msj.style.width = "100%";
+                    msj.style.height = "100%";
+
+                    headeForm.style.display = "none";
+                    message.value = "";
+                    $("#manufacturer_message_form").removeClass("messageForm");
+
+                    personalInfo_label.style.display = "none";
+                    $(".form").css({
+                        'position': '',
+                        'bottom': '',
+                        'borderRadius': '',
+                        'width': '',
+                        'marginLeft': ''
+                    });
+                    include_info.style.display = "none";
+                    manufacturesADD.style.display = "block";
+                    //prod_N.style.display = "block";
+                    manufacturesYEAR.style.display = "block";
+                    manufacturesIMG_content.style.width = "70px";
+                    manufacturesIMG_content.style.height = "70px";
+                    manufacturesNAME.style.marginLeft = "0px";
+                }
+            }
+        });
+    }
+    function successFuncgetUsuario(data, status) {
+        var obj = data.manu;
+        myString = /Date\((\d+)\)/.exec(obj.year_established)[1];
+        var ts = parseInt(myString) * 0.001;
+        var un = moment.unix(ts).format("YYYY");
+        manufacturesNAME.innerHTML = obj.name_manofacturer;
+        toSendMSG.innerHTML = "Send " + obj.name_manofacturer + " a message";
+
+        manufacturesYEAR.innerHTML = "Est: " + un;
+
+        var tags = obj.manufactures_keywords.split(',');
+        var tags_final = "";
+        for (i = 0; i < tags.length; i++) {
+            if (tags[i] != "") {
+                tags_final = tags_final + "<a style='text-decoration: none;' href='results.html?User=" + $.urlParam('User') + "&searchBy=" + tags[i] + "'><span class='tags_class'>" + tags[i] + "</span></a>";
+            }
+        }
+        manufacturesKEYW.innerHTML = tags_final;
+        //manufacturesKEYW.innerHTML = obj.manufactures_keywords.replace(/,/g, ", ");
+        $.ajax({
+            url: url_service + "/Home/getmanufacturesIMG",
+            type: "POST",
+            dataType: "json",
+            data: { 'nombre': obj.name_manofacturer },
+            success: getmanufacturesIMG
+        });
+    }
+    function getmanufacturesIMG(data, status) {
+        try{
+            manufacturesIMG_content.style.backgroundImage = "url('" + url_service + "/img_data" + data.replace(/[\\"]/g, '/').split("img_data")[1] + "')";
+        }catch(e){}
+        $.ajax({
+            url: url_service + "/Home/getAllProductId1",
+            type: "POST",
+            dataType: "json",
+            data: { "manufactures": manufacturesNAME.innerText },//JSON.stringify({ 'param': param, 'fromDate': from.toString(), 'toDate': to.toString() }),
+            success: showProducts
+        });
+    }
+    function showProducts(data, status) {
+        var i = 0;
+        var myTimer = setInterval(function () {
+            if (!$.timers.length) { // any page animations finished
+                getProductsFromList(data.result[i], "list");
+                i = i + 1;
+                if (i > data.result.length) {
+                    clearInterval(myTimer);
+                }
+            }
+
+        }, 1000);
+        //loader_container.style.display = "none";
+    }
+    function getProductsFromList(value, action) {
+        $.ajax({
+            url: url_service + "/Home/getProductImg",
+            type: "POST",
+            dataType: "json",
+            data: { 'idProducts': value, "action": action },//JSON.stringify({ 'param': param, 'fromDate': from.toString(), 'toDate': to.toString() }),
+            success: successFuncGetProductImgList
+        });
+    }
+    var fl = "left";
+    function successFuncGetProductImgList(data, status) {
+        try {
+            if (data.action == "list") {
+                var st = "getProductsFrom('" + data.result.id_products + "', null)";
+                var aw = "0";
+                if (data.result.awesome > 0) {
+                    aw = data.result.awesome;
+                }
+                if (fl == "left") {
+                    $('<div class="product-div">' +
+                        '<a href="product.html?Product=' + data.result.product_name.replace("'", "*").replace(/&/g, "!") +
+                        '&User=' + $.urlParam('User') + '"><img class="img-product" id="Img2" src="' + url_service + "/img_data" + data.result.product_images_url.replace(/[\\"]/g, '/').split("img_data")[1] + '" /></a>' +
+                        '<div class="txt-product">' +
+                        '<span class="Span3">' + data.result.product_name + '</span>' +
+                        '<div class="awesome-div"><span class="Awesome">' + aw + '</span>' +
+                        '<img class="style-awe-img" src="img/btn-awesome.png" alt="awesome"/>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>').appendTo("#prods");
+                    if (fl == "left") {
+                        fl = "right";
+                    } else {
+                        fl = "left";
+                    }
+                } else {
+                    $('<div class="product-div">' +
+                    '<a href="product.html?Product=' + data.result.product_name.replace("'", "*").replace(/!/g, "&") +
+                    '&User=' + $.urlParam('User') + '"><img class="img-product" id="Img2" src="' + url_service + "/img_data" + data.result.product_images_url.replace(/[\\"]/g, '/').split("img_data")[1] + '" /></a>' +
+                    '<div class="txt-product">' +
+                    '<span class="Span3">' + data.result.product_name + '</span>' +
+                    '<div class="awesome-div"><span class="Awesome">' + aw + '</span>' +
+                    '<img class="style-awe-img" src="img/btn-awesome.png" alt="awesome"/>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>').appendTo("#prods1");
+                    if (fl == "left") {
+                        fl = "right";
+                    } else {
+                        fl = "left";
+                    }
+                }
+            }
+        } catch (ex) { alert(ex); }
+        $('.productItem').fadeIn(500).css({ "display": "inline-block", "opacity": "1" });
+    }
+</script>
+<script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+<script>
+    //$(document).ready(function (e) {
+    //    $("#search").autocomplete({
+    //        source: function (request, response) {
+    //            $.ajax({
+    //                url: url_service + "/Home/AutoComplete",
+    //                type: "POST",
+    //                dataType: "json",
+    //                data: { term: request.term },
+    //                success: function (data) {
+    //                    response($.map(data, function (item) {
+    //                        return { label: item.name + "|" + item.type, value: item.name };
+    //                    }))
+    //                }
+    //            })
+    //        },
+    //        messages: {
+    //            noResults: "", results: ""
+    //        }
+    //    }).data("ui-autocomplete")._renderItem = function (ul, item) {
+    //        if (item.label.split("|")[1] == "Product") {
+    //            return $("<li></li>")
+    //                .data("item.autocomplete", item)
+    //                .append("<a href='product.html?Product=" +
+    //                item.label.split("|")[0].replace("'", "*") + "&User=" + $.urlParam('User') + "'>" +
+    //                item.label.split("|")[0] +
+    //                "<br><span>" + item.label.split("|")[1] + "</span></a>")
+    //                .appendTo(ul);
+    //        }
+    //        if (item.label.split("|")[1] == "Manufactures") {
+    //            return $("<li></li>")
+    //                .data("item.autocomplete", item)
+    //                .append("<a href='manufacturers_view.html?Man=" +
+    //                item.label.split("|")[0].replace("'", "*") + "&User=" + $.urlParam('User') + "'>" +
+    //                item.label.split("|")[0] +
+    //                "<br><span>" + item.label.split("|")[1] + "</span></a>")
+    //                .appendTo(ul);
+    //        }
+    //    };
+    //});
+ </script>
+</html>

@@ -1,0 +1,1304 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300,600,700,900' rel='stylesheet' type='text/css'>
+        
+    <!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,500,900' rel='stylesheet' type='text/css'>-->
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="js/script.js" type="text/javascript"></script>
+    <title>Pet Shop App</title>
+</head>
+<body>
+    <!--<div id="loader_container" class="loader_container">
+        <img class="loader_inside" src="img/346.gif" alt="">
+        <span></span>
+    </div>-->
+    <div id="filter" style="display: none" class="ctn-conte-filter">
+        <div class="div-page-tittle"><span class="ti-pag">Filters</span></div>
+        <div class="filtro-ti-div"><span class="ti-filtro">Pet Products For:</span></div>
+        <div class="cont-filtro">
+            <div>
+                <input class="filt_imput" type="checkbox" id="Dog-id" name="Dog" value="Dog">
+                <label for="Dog">Dog</label>
+            </div>
+            <div>
+                <input class="filt_imput" type="checkbox" id="Cat-id" name="Cat" value="Cat">
+                <label for="Cat">Cat</label>
+            </div>
+            <div>
+                <input class="filt_imput" type="checkbox" id="Bird-id" name="Bird" value="Bird">
+                <label for="Bird">Bird</label>
+            </div>
+            <div>
+                <input class="filt_imput" type="checkbox" id="Reptile-id" name="Reptile" value="Reptile">
+                <label for="Reptile">Reptile</label>
+            </div>
+            <div>
+                <input class="filt_imput" type="checkbox" id="SmallMammal-id" name="Mammal" value="Mammal">
+                <label for="Mammal">Small Mammal</label>
+            </div>
+            <div>
+                <input class="filt_imput" type="checkbox" id="Playtime" name="Playtime" value="Playtime">
+                <label for="Playtime">Playtime</label>
+            </div>
+            <div>
+                <input class="filt_imput" type="checkbox" id="LeashesCollars" name="LeashesCollars" value="Leashes & Collars">
+                <label for="LeashesCollars">Leashes & Collars</label>
+            </div>
+            <div>
+                <input class="filt_imput" type="checkbox" id="HealthWellness" name="HealthWellness" value="Health & Wellness">
+                <label for="HealthWellness">Health & Wellness</label>
+            </div>
+            <div>
+                <input class="filt_imput" type="checkbox" id="Apparel" name="Apparel" value="Apparel">
+                <label for="Apparel">Apparel</label>
+            </div>
+            <div>
+                <input class="filt_imput" type="checkbox" id="FortheHome" name="FortheHome" value="For the Home">
+                <label for="FortheHome">For the Home</label>
+            </div>
+            <div>
+                <input class="filt_imput" type="checkbox" id="ForthePetOwner" name="ForthePetOwner" value="For the Pet Owner">
+                <label for="ForthePetOwner">For the Pet Owner</label>
+            </div>
+            <div>
+                <input class="filt_imput" type="checkbox" id="TreatsFood" name="TreatsFood" value="Treats/Food">
+                <label for="TreatsFood">Treats/Food</label>
+            </div>
+        </div>
+        <div class="filtro-ti-div"><span class="ti-filtro">Manufacturers Located in:</span></div>
+        <div class="cont-filtro">
+            <div>
+                <input class="filt_imput1" type="checkbox" id="nort-am" name="NorthAmerica" value="North America">
+                <label for="NorthAmerica">North America</label>
+            </div>
+            <div>
+                <input class="filt_imput1" type="checkbox" id="Europe-id" name="Europe" value="Europe">
+                <label for="Europe">Europe</label>
+            </div>
+            <div>
+                <input class="filt_imput1" type="checkbox" id="south-am" name="Southam" value="Southam">
+                <label for="Southam">South America</label>
+            </div>
+            <div>
+                <input class="filt_imput1" type="checkbox" id="Asia-id" name="Asia" value="Asia">
+                <label for="Asia">Asia</label>
+            </div>
+            <div>
+                <input class="filt_imput1" type="checkbox" id="Australia-id" name="Australia" value="Australia">
+                <label for="Australia">Australia</label>
+            </div>
+        </div>
+        <div onclick="searchManufactures()" class="btn-filtro"><span class="txt-sent">Search</span></div>
+    </div>
+    <script type="text/javascript" src="js/jssor.slider.min.js"></script>
+    <script>
+        jssor_1_slider_init = function () {
+
+            var jssor_1_SlideshowTransitions = [
+              { $Duration: 3000, $Opacity: 2 }
+            ];
+
+            var jssor_1_options = {
+                $AutoPlay: true,
+                $SlideshowOptions: {
+                    $Class: $JssorSlideshowRunner$,
+                    $Transitions: jssor_1_SlideshowTransitions,
+                    $TransitionsOrder: 1
+                },
+                $ArrowNavigatorOptions: {
+                    $Class: $JssorArrowNavigator$
+                },
+                $BulletNavigatorOptions: {
+                    $Class: $JssorBulletNavigator$
+                }
+            };
+
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+            //responsive code begin
+            //you can remove responsive code if you don't want the slider scales while window resizing
+            function ScaleSlider() {
+                var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
+                if (refSize) {
+                    refSize = Math.min(refSize, 600);
+                    jssor_1_slider.$ScaleWidth(refSize);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+            ScaleSlider();
+            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+            //responsive code end
+        };
+    </script>
+
+    <style>
+        /* jssor slider bullet navigator skin 05 css */
+        /*
+        .jssorb05 div           (normal)
+        .jssorb05 div:hover     (normal mouseover)
+        .jssorb05 .av           (active)
+        .jssorb05 .av:hover     (active mouseover)
+        .jssorb05 .dn           (mousedown)
+        */
+        .jssorb05 {
+            position: absolute;
+        }
+
+            .jssorb05 div, .jssorb05 div:hover, .jssorb05 .av {
+                position: absolute;
+                /* size of bullet elment */
+                width: 16px;
+                height: 16px;
+                background: url('img/b05.png') no-repeat;
+                overflow: hidden;
+                cursor: pointer;
+            }
+
+            .jssorb05 div {
+                background-position: -7px -7px;
+            }
+
+                .jssorb05 div:hover, .jssorb05 .av:hover {
+                    background-position: -37px -7px;
+                }
+
+            .jssorb05 .av {
+                background-position: -67px -7px;
+            }
+
+            .jssorb05 .dn, .jssorb05 .dn:hover {
+                background-position: -97px -7px;
+            }
+
+        /* jssor slider arrow navigator skin 12 css */
+        /*
+        .jssora12l                  (normal)
+        .jssora12r                  (normal)
+        .jssora12l:hover            (normal mouseover)
+        .jssora12r:hover            (normal mouseover)
+        .jssora12l.jssora12ldn      (mousedown)
+        .jssora12r.jssora12rdn      (mousedown)
+        */
+        .jssora12l, .jssora12r {
+            display: block;
+            position: absolute;
+            /* size of arrow element */
+            width: 30px;
+            height: 46px;
+            cursor: pointer;
+            background: url('img/a12.png') no-repeat;
+            overflow: hidden;
+        }
+
+        .jssora12l {
+            background-position: -16px -37px;
+        }
+
+        .jssora12r {
+            background-position: -75px -37px;
+        }
+
+        .jssora12l:hover {
+            background-position: -136px -37px;
+        }
+
+        .jssora12r:hover {
+            background-position: -195px -37px;
+        }
+
+        .jssora12l.jssora12ldn {
+            background-position: -256px -37px;
+        }
+
+        .jssora12r.jssora12rdn {
+            background-position: -315px -37px;
+        }
+    </style>
+    <div class="shadow"></div>
+    <div id="jssor_1" style="position: relative; margin: 0 auto; top: 60px; left: 0px; width: 600px; height: 420px; overflow: hidden; visibility: hidden;">
+        <!-- Loading Screen -->
+        <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+            <div style="position: absolute; display: block; background: url('img/loading.gif') no-repeat center center; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+        </div>
+        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 420px; overflow: hidden;">
+            <div id="productIMG_cont" data-p="112.50" style="display: none;">
+                <img style="display: none" class="img_product" id="productIMG" src="" />
+            </div>
+            <div id="productIMG_cont1" data-p="112.50" style="display: none;">
+                <img class="img_product" id="productIMG1" src="" />
+            </div>
+            <div id="productIMG_cont2" data-p="112.50" style="display: none;">
+                <img class="img_product" id="productIMG2" src="" />
+            </div>
+            <div id="productIMG_cont3" data-p="112.50" style="display: none;">
+                <img class="img_product" id="productIMG3" src="" />
+            </div>
+            <div id="productIMG_cont4" data-p="112.50" style="display: none;">
+                <img class="img_product" id="productIMG4" src="" />
+            </div>
+            <div id="productIMG_cont5" data-p="112.50" style="display: none;">
+                <img class="img_product" id="productIMG5" src="" />
+            </div>
+            <!--<img style="display:none" class="img_product" id="productIMG2" src="" />
+                <img style="display:none" class="img_product" id="productIMG3" src="" />
+                <img style="display:none" class="img_product" id="productIMG4" src="" />
+                <img style="display:none" class="img_product" id="productIMG5" src="" /> -->
+        </div>
+        <!-- Bullet Navigator -->
+        <div data-u="navigator" class="jssorb05" style="bottom: 16px; right: 16px;" data-autocenter="1">
+            <!-- bullet navigator item prototype -->
+            <div data-u="prototype" style="width: 16px; height: 16px;"></div>
+        </div>
+        <!-- Arrow Navigator -->
+        <span data-u="arrowleft" class="jssora12l" style="top: 0px; left: 0px; width: 30px; height: 46px;" data-autocenter="2"></span>
+        <span data-u="arrowright" class="jssora12r" style="top: 0px; right: 0px; width: 30px; height: 46px;" data-autocenter="2"></span>
+    </div>
+    <script>
+        
+    </script>
+
+    <div class="ctn-ppal">
+        <div class="ctn-header">
+            <!--<div id="menu-1" class="menu-app"></div>-->
+            <a id="back_link" href="home.html">
+                <div id="back" class="back_button">
+                    <img style="width: 100%; height: 100%" src="img/flecha_.png" alt="">
+                </div>
+            </a>
+            <div class="icon_bone"></div>
+            <!--<div class="buscar-page" onclick=""><img id="Img2" src="img/lupa.png" /></div>-->
+            <!--<div class="log-page" onclick="showHideFilter()"><img id="imh-home" src="img/filtro.png" /></div>-->
+            <!--<div class="chat-page" onclick="viewCon()"><img id="Img1" src="img/chat.png" /></div>-->
+        </div>
+
+        <!--<div id="navbar" class="ctn-header"><div class="reg-back"><a id="back" href="home.html"><img id="flecha-back" src="img/flecha.png"/></a></div>
+            <div class="buscador"><input id="search" type="text" /></div>  
+            <div class="enl-wel1" onclick="share()" ><img "id-compa" src="img/btn-compartir.png" /></div>  
+            <div class="enl-wel1"  onclick="aww()" ><img "id-compa" src="img/btn-awe1.png" /></div> 
+            <div class="log-page" onclick="showHideFilter()"><img id="imh-home" src="img/filtro.png" /></div>    
+         </div> -->
+        <div class="ctn-conte-wel">
+            <div style="width: 100%; overflow-y: hidden; overflow-x: scroll; display: none">
+                <div id="fillIm">
+                    <!--<img style="display:none" class="img_product" id="productIMG"  src="" />
+                                <img style="display:none" class="img_product" id="productIMG1" src="" />
+                                <img style="display:none" class="img_product" id="productIMG2" src="" />
+                                <img style="display:none" class="img_product" id="productIMG3" src="" />
+                                <img style="display:none" class="img_product" id="productIMG4" src="" />
+                                <img style="display:none" class="img_product" id="productIMG5" src="" />-->
+                </div>
+            </div>
+            <div class="colum-wel">
+            </div>
+            <div class="cont-btn">
+                <ul class="ul-welcome">
+                    <li class="enl-wel0">
+                        <img class="style-awe-desc" src="img/btn-awesome.png" alt="awesome" /><span id="productAWE"></span></li>
+                </ul>
+            </div>
+            <div class="conte-info" style="display: inline-block;">
+                <p id="productNAME" class="ti-desc"></p>
+                <p style="font-size: 1rem;">Description:</p>
+                <p id="productDESC"></p>
+                <div style="color: rgb(169, 169, 169); margin: 20px 0px;" class="manuData" id="MadeIn"></div>
+                <div class="manuData" id="manufacturesKEYW"></div>
+            </div>
+
+            <div id="Videos" style="display:none;margin-top: 20px; width: 100%; min-width: 320px;" class="list-tile">
+                
+            </div>
+            <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/2sYyIdc-k_k" frameborder="0" allowfullscreen></iframe>-->
+
+            <div id="manufacturer_message_form" class="conte-info">
+
+                <div class="form">
+                    <div id="headeForm" style="display: none">
+                        <input id="cancel" type="button" value="Cancel">
+                        <span style="font-size: 1rem; width: 100%; text-align: center; display: block; font-weight: 600;">Contact</span>
+                    </div>
+                    <div class="manuData" id="manufacturesYEAR" style="margin-top: 10px; text-align: right; margin-bottom: -30px; float: right; font-size: 0.8rem; color: rgb(166, 166, 166);"></div>
+                    <div style="width: 50%; max-width: 80px; display: inline-block; float: left;">
+                        <div id="manufacturesIMG_content" class="manufacturesIMG_content">
+                        </div>
+
+                    </div>
+                    <div style="width: 60%; display: inline-block; float: left;">
+                        <p class="ti-desc" style="font-size: 1.2rem;" id="manufacturesNAME"></p>
+                        <div class="manuData" id="manufacturesADD" style="font-size: 0.9rem;"></div>
+                        <div onclick="loadProdManufacurer()" class="manuData" id="prod_N" style="font-size: 0.9rem; color: #37BEAF; font-weight: 900;"></div>
+                    </div>
+                    <span id="loading_manufacturer_prods" style="display: none; font-size: 1.2rem; text-align: center; width: 100%">Loading Products...</span>
+                    <div id="prodsMan" class="colum-left" style="width: 100%; margin-top: 10px;">
+                    </div>
+                    <div id="prodsMan1" class="colum-left" style="float: right;">
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <textarea name="" id="message" cols="30" rows="10"></textarea>
+                    <div id="include_info" style="margin: 10px 0px; display: none;">
+                        <div class="roundedOne">
+                            <input id="personalInfo" style="color: transparent; opacity: 0; z-index: 99; position: absolute;" type="checkbox" value="None"  name="check" />
+                            <label for="roundedOne"></label>
+                        </div>
+                        <!--<input class="filt_imput" type="checkbox" id="personalInfo" name="personalInfo" value="Treats/Food" style="float:left;max-width: 20px;height: 20px;  margin-left: 20px !important;">-->
+                        <label id="personalInfo_label" for="personalInfo">
+                            Include my personal information
+                            <br>
+                            <span style="font-size: 0.7rem; color: rgb(116, 116, 116);">For security reasons this does not send your tax ID</span>.</label>
+                    </div>
+                    <!--<div class="con-btn">-->
+                    <input id="sendMessage" onclick="sendMessage()" type="button" value="Send to Manufacturer" style="float: right;">
+                </div>
+                <!--</div>-->
+            </div>
+            <div class="enl-wel2" style="margin-top: -20px !important; display: inline-block !important; position: relative;">
+                <div id="contact" class="btn-welcome2 color2" style="font-size: 0.9rem; line-height: 2rem;">
+                    <img id="Img3" src="img/chat1.png" style="width: 20px; margin-bottom: -4px; margin-right: 5px;" />
+                    <span id="toSendMSG">Contact Manufacturer</span>
+                </div>
+            </div>
+            <div id="RightSitios" class="containerRightSitios">
+                <div id="geo" class="geo" style="display: none"></div>
+                <div id="map" style="width: 100%; height: 130px;"></div>
+                <div id="infoPanel">
+                    <div id="markerStatus" style="display: none;"><i>Arrastre el marcador rojo:</i></div>
+                    <b style="display: none;">Direccion mas cercana en google:</b>
+                    <div id="address" style="display: none"></div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <!--<div class="control">-->
+                    <div class="control" >
+                    <img onclick="share()" alt="" src="img/joya1.png">
+                </div>
+                <div class="control" style="margin-bottom: 20px;">
+                    <img onclick="viewCon()" style="width: 80%; max-width: 100px" alt="" src="img/joya2.png">
+                </div>
+                <div class="control" ">
+                    <img onclick="aww()" alt="" src="img/joya3.png">
+                </div>
+            </div>
+            <!--<div id="map" style="width:100%; height:90%;position:fixed"></div>-->
+
+            <!--endmap-->
+            <div class="inf-mg">
+                <span class="info-txt">You might also like:</span>
+            </div>
+            <div id="prods" class="colum-left" style="width: 96%;">
+            </div>
+            <div id="prods1" class="colum-left" style="float: right;">
+            </div>
+        </div>
+        <div id="confirm_msj" class="confirm-msj top01">
+            <div class="div-reg-company centere">
+                <img id="img-reg-confim" class="confir-img" src="img/logo-confirmacion.png" alt="logo-confirm" />
+                <p class="reg-tex-s01">Congratulations!</p>
+                <p class="reg-tex-s02">You sent message!</p>
+                <div class="button_done_reg">Done</div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="everlive.all.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+</script>
+    <script type="text/javascript" src="js/moment.js"></script>
+    <style>
+        #vid {
+            width: 100%;
+            min-height: 300px;
+        }
+
+        #headeForm {
+            margin: 10px 0px;
+            display: block;
+            margin-bottom: 10px;
+            margin-top: -25px;
+            background-color: white;
+            padding: 5% 0%;
+            margin-left: -2%;
+            width: 104%;
+            border-radius: 20px 20px 0px 0px;
+        }
+
+        .messageForm input, .messageForm textarea {
+            display: inline-block !important;
+            border-radius: 5px;
+            border: solid 0px gray;
+            width: 95%;
+            height: 170px;
+            outline: none;
+            margin-left: -2%;
+            padding: 5%;
+        }
+        /* ROUNDED ONE */
+        .roundedOne {
+            width: 28px;
+            height: 28px;
+            float: left;
+            display: inline-block;
+            margin-left: 10px !important;
+            margin-top: 0px !Important;
+            background: #fcfff4;
+            background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            background: -o-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            background: -ms-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
+            margin: 20px auto;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+            -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+            -moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+            box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+            .roundedOne label {
+                cursor: pointer;
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                -webkit-border-radius: 50px;
+                -moz-border-radius: 50px;
+                border-radius: 50px;
+                left: 4px;
+                top: 4px;
+                -webkit-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+                -moz-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+                box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+                background: -webkit-linear-gradient(top, #222 0%, #45484d 100%);
+                background: -moz-linear-gradient(top, #222 0%, #45484d 100%);
+                background: -o-linear-gradient(top, #222 0%, #45484d 100%);
+                background: -ms-linear-gradient(top, #222 0%, #45484d 100%);
+                background: linear-gradient(top, #222 0%, #45484d 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222', endColorstr='#45484d',GradientType=0 );
+            }
+
+                .roundedOne label:after {
+                    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+                    filter: alpha(opacity=0);
+                    opacity: 0;
+                    content: '';
+                    position: absolute;
+                    width: 16px;
+                    height: 16px;
+                    background: #00BF9B;
+                    background: -webkit-linear-gradient(top, #00BF9B 0%, #00BF9B 100%);
+                    background: -moz-linear-gradient(top, #00BF9B 0%, #00BF9B 100%);
+                    background: -o-linear-gradient(top, #00BF9B 0%, #00BF9B 100%);
+                    background: -ms-linear-gradient(top, #00BF9B 0%, #00BF9B 100%);
+                    background: linear-gradient(top, #00BF9B 0%, #00BF9B 100%);
+                    -webkit-border-radius: 50px;
+                    -moz-border-radius: 50px;
+                    border-radius: 50px;
+                    top: 2px;
+                    left: 2px;
+                    -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+                    -moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+                    box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+                }
+
+                .roundedOne label:hover::after {
+                    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+                    filter: alpha(opacity=30);
+                    opacity: 0.3;
+                }
+
+            .roundedOne input[type=checkbox]:checked + label:after {
+                -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+                filter: alpha(opacity=100);
+                opacity: 1;
+            }
+        /*ñññññññññññññ*/
+        #back {
+            left: 15px;
+        }
+
+        .txt-product {
+            display: none;
+        }
+
+        .colum-left img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .product-div {
+            border: solid 1px #C3C3C3;
+            border-radius: 8px;
+            margin: 0.5%;
+            width: 75px;
+            margin-left: 1%;
+            float: left;
+            box-shadow: 0px 2px 1px rgb(163, 163, 163);
+            margin-bottom: 10px;
+            background-color: white;
+            height: 80px;
+        }
+
+        .controls {
+            width: 100%;
+            margin-top: -35px;
+            position: relative;
+        }
+
+        .control {
+            width: 32%;
+            display: inline-block;
+            margin-top: 10px;
+            margin-bottom: 40px;
+        }
+
+            .control img {
+                width: 30%;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+                max-width: 55px;
+            }
+
+        #search {
+            opacity: 0;
+        }
+
+        .leaflet-left {
+            opacity: 0;
+        }
+
+        #sendMessage {
+            color: white;
+            width: 104%;
+            max-width: 1000px;
+            margin-bottom: -20px;
+            background-color: rgb(74, 182, 166);
+            border: none;
+            font-size: 1rem;
+            margin-right: -2%;
+            border-radius: 0px;
+            line-height: 0rem;
+        }
+
+        #cancel {
+            color: rgb(123, 123, 123);
+            float: left;
+            position: absolute;
+            background-color: transparent;
+            border: none;
+            text-align: left;
+            font-size: 1rem;
+            margin-top: -15px;
+            left: 20px;
+        }
+
+        .messageForm {
+            width: 96%;
+        }
+
+        #mapActions {
+            width: 96%;
+            color: white;
+            background-color: gray;
+            padding: 2%;
+            display: none;
+        }
+
+        #Unablecanvas {
+            display: block;
+            width: 100%;
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0.19);
+            margin-bottom: -200px;
+            z-index: 1;
+            position: relative;
+        }
+
+        #routebtn {
+            background-color: rgb(41, 202, 183);
+            padding: 3px;
+            border-radius: 4px;
+            font-size: 1.3rem;
+        }
+
+        #closeMap {
+            color: white;
+            float: right;
+            font-size: 2rem;
+            line-height: 10px;
+        }
+
+        .rigthSite {
+            position: fixed;
+            top: 0px;
+            width: 100%;
+            z-index: 99999999999999;
+            background-color: rgba(0, 0, 0, 0.27);
+            height: 100%;
+        }
+
+        .mapMax {
+            width: 96% !important;
+            height: 350px !important;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 5%;
+            border-radius: 10px;
+        }
+
+        .enl-wel2 {
+            display: none !important;
+        }
+
+            .enl-wel2.bgChange {
+                display: inline-block !important;
+            }
+
+        .colum-wel img {
+            width: auto;
+            height: auto;
+            border-radius: 0px;
+            display: inline-block;
+            float: left;
+        }
+
+        #navbar {
+            background: rgba(0, 0, 0, 0);
+            transition: 0.8s;
+            -webkit-transition: 0.8s;
+        }
+
+            #navbar.bgChange {
+                background: rgba(55, 190, 175, 1);
+            }
+
+        .shadow {
+            background: linear-gradient(black -20%,rgba(0, 0, 0, 0.33),transparent);
+            background: -webkit-linear-gradient(black -20%,rgba(0, 0, 0, 0.33),transparent);
+            background: -moz-linear-gradient(black -20%,rgba(0, 0, 0, 0.33),transparent);
+            position: absolute;
+            top: 0px;
+            width: 100%;
+            height: 120px;
+            z-index: 999;
+        }
+
+        #prods {
+            margin-left: 2%;
+        }
+
+        #search {
+            background-color: rgba(65, 165, 153, 0);
+            border: solid rgba(255, 255, 255, 0.36) 3px !important;
+        }
+
+        .img_product {
+            border-radius: 8px 8px 0px 0px;
+            max-height: 400px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block !important;
+        }
+
+        .awNotify {
+            position: fixed;
+            top: 0px;
+            z-index: 9999999999;
+            background-color: white;
+            padding: 2%;
+            width: 96%;
+            text-align: center;
+            font-size: 1.3rem;
+            border-bottom: solid 2px rgb(0, 255, 216);
+            box-shadow: 0px 4px 15px 0px black;
+            display: none;
+        }
+
+        .img_product {
+            border-radius: 8px 8px 0px 0px;
+            max-height: 400px;
+        }
+
+        .reg-back {
+            position: absolute;
+        }
+
+        #map {
+            background-color: rgb(206, 217, 226);
+            background-size: 100% auto;
+            background-position: right;
+        }
+
+        .button_done_reg {
+            color: white;
+            background-color: rgb(88, 203, 199);
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .tags_class {
+            color: white;
+            background-color: rgb(207, 207, 207);
+            padding: 5px;
+            margin: 1%;
+            border-radius: 5px;
+        }
+
+        @media screen and (min-device-width: 520px) {
+            #cancel {
+                margin-top: -35px;
+            }
+
+            #headeForm {
+                padding: 3% 0%;
+            }
+
+            #sendMessage {
+                padding: 4%;
+            }
+        }
+    </style>
+    <div id="awNotify" class="awNotify"></div>
+    <div id="id_prod_forS" style="display: none"></div>
+        <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+    <script>
+        var location_data;
+        var url_service = "http://petretailapp-001-site1.btempurl.com/petretail";
+        //var url_service = "http://localhost:7850";
+        function share() {
+            window.plugins.socialsharing.share('Look at this innovate product!!! ' + productNAME.innerText, null, productIMG.src);
+        }
+        function showHideFilter() {
+
+            var fil = document.getElementById("filter").style.display.toString();
+            if (fil == "none") {
+                document.getElementById("filter").style.display = "inline-block";
+            } else {
+                document.getElementById("filter").style.display = "none";
+            }
+        }
+
+        function loadProdManufacurer() {
+            loading_manufacturer_prods.style.display = "inline-block";
+            $.ajax({
+                url: url_service + "/Home/getAllProductId",
+                type: "POST",
+                dataType: "json",
+                data: { "manufactures": manufacturesNAME.innerText },//JSON.stringify({ 'param': param, 'fromDate': from.toString(), 'toDate': to.toString() }),
+                success: showProductsMan
+            });
+        }
+        function showProductsMan(data, status) {
+            var i = 0;
+            var myTimer = setInterval(function () {
+                if (!$.timers.length) { // any page animations finished
+                    getProductsFromListMan(data.result[i], "list");
+                    i = i + 1;
+                    if (i > data.result.length) {
+                        clearInterval(myTimer);
+                    }
+                }
+
+            }, 1000);
+            //loader_container.style.display = "none";
+        }
+        function getProductsFromListMan(value, action) {
+            $.ajax({
+                url: url_service + "/Home/getProductImg",
+                type: "POST",
+                dataType: "json",
+                data: { 'idProducts': value, "action": action },//JSON.stringify({ 'param': param, 'fromDate': from.toString(), 'toDate': to.toString() }),
+                success: successFuncGetProductImgListMan
+            });
+        }
+        var flMan = "left";
+        function successFuncGetProductImgListMan(data, status) {
+            try {
+                if (data.action == "list") {
+                    var st = "getProductsFrom('" + data.result.id_products + "', null)";
+                    var aw = "0";
+                    if (data.result.awesome > 0) {
+                        aw = data.result.awesome;
+                    }
+                    //if (flMan == "left") {
+                    $('<div class="product-div">' +
+                        '<a href="product.html?Product=' + data.result.product_name.replace("'", "*").replace(/&/g, "!") +
+                        '&User=' + $.urlParam('User') + '"><img class="img-product" id="Img2" src="' +
+                        url_service + "/img_data" + data.result.product_images_url.replace(/[\\"]/g, '/').split("img_data")[1] + '" /></a>' +
+                        '<div class="txt-product">' +
+                        '<span class="Span3">' + data.result.product_name + '</span>' +
+                        '<div class="awesome-div"><span class="Awesome">' + aw + '</span>' +
+                        '<img class="style-awe-img" src="img/btn-awesome.png" alt="awesome"/>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>').appendTo("#prodsMan");
+                }
+                loading_manufacturer_prods.style.display = "none";
+            } catch (ex) { }
+            $('.productItem').fadeIn(500).css({ "display": "inline-block", "opacity": "1" });
+        }
+
+        var user = "";
+        $(document).ready(function (e) {
+            $('#map').click(function () {
+                try {
+                    location.replace("mappage.html?User=" + $.urlParam('User')
+                        + "&place=" + document.getElementById('MadeIn').innerText.split(': ')[1]
+                        + "&Product=" + $.urlParam('Product'));
+                } catch (ex) { }
+            });
+            $('#closeMap').click(function () {
+                $("#RightSitios").removeClass("rigthSite");
+                $("#map-canvas").removeClass("mapMax");
+                mapActions.style.display = "none";
+                Unablecanvas.style.display = "inline-block";
+            });
+            $('#search').keydown(function () { if (this.value == "") { this.style.backgroundImage = "url('img/bg-search.png')"; } else { this.style.backgroundImage = "url('')"; } });
+            $('#manufacturesIMG_content').click(function () {
+                location.replace("manufacturers_view.html?Man=" + manufacturesNAME.innerText.replace(/'/g, "*").replace(/&/g, "!") + "&User=" + $.urlParam('User'));
+            });
+            $('#contact').click(function () {
+                headeForm.style.display = "block";
+                //$("#manufacturer_message_form").css('top', "-25");
+
+                $("#manufacturer_message_form").addClass("messageForm");
+
+                personalInfo_label.style.display = "block";
+                $(".form").css({
+                    'position': 'fixed',
+                    'bottom': '0px',
+                    'borderRadius': '20px 20px 0px 0px',
+                    'width': '96%',
+                    'marginLeft': '-2%'
+                });
+                manufacturesADD.style.display = "none";
+                prod_N.style.display = "none";
+                manufacturesYEAR.style.display = "none";
+                manufacturesIMG_content.style.width = "50px";
+                manufacturesIMG_content.style.height = "50px";
+                manufacturesNAME.style.marginLeft = "-20px";
+                include_info.style.display = "block";
+            });
+            $('#cancel').click(function () {
+                headeForm.style.display = "none";
+                //$("#manufacturer_message_form").css('top', "-0");
+
+                message.value = "";
+                $("#manufacturer_message_form").removeClass("messageForm");
+
+                personalInfo_label.style.display = "none";
+                $(".form").css({
+                    'position': '',
+                    'bottom': '',
+                    'borderRadius': '',
+                    'width': '',
+                    'marginLeft': ''
+                });
+                manufacturesADD.style.display = "block";
+                prod_N.style.display = "block";
+                manufacturesYEAR.style.display = "block";
+                manufacturesIMG_content.style.width = "70px";
+                manufacturesIMG_content.style.height = "70px";
+                manufacturesNAME.style.marginLeft = "0px";
+                include_info.style.display = "none";
+            });
+
+            $('#search').keyup(function (e) {
+                if (e.keyCode == 13) {
+                    location.replace('results.html?User=' + $.urlParam('User') + "&searchBy=" + search.value.replace("'", "*"));
+                }
+            });
+            //loader_container.style.display = "inline-block";
+            $.urlParam = function (name) {
+                var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+                if (results == null) {
+                    return null;
+                }
+                else {
+                    return results[1] || 0;
+                }
+            }
+
+            back_link.href = "home.html?User=" + $.urlParam('User');
+            user = $.urlParam('User');
+
+            $.ajax({
+                url: url_service + "/Home/getvideo",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    'PRODUCT': $.urlParam('Product').replace(/!/g, '&').replace("*", "'"),
+                },
+                success: function (data) {
+                    if (data != "" && data != null) {
+                        Videos.style.display = "block";
+                        if (data.indexOf("embed") > -1) {
+                            Videos.innerHTML = '<iframe id="vid" src="' + data + '" frameborder="0" allowfullscreen></iframe>';
+                        } else {
+                            var vid_from_db = "https://www.youtube.com/embed/" + data.split("?v=")[1];
+                            Videos.innerHTML = '<iframe id="vid" src="' + vid_from_db + '" frameborder="0" allowfullscreen></iframe>';
+                        }
+                    }
+                }
+            });
+            getProductsFrom($.urlParam('Product').replace(/!/g, '&'), null);
+
+            windowheight = $(window).height();
+            t = windowheight - 102;
+            $(".ctn-ppal").css('height', t);
+        });
+        $(".button_done_reg").click(function () {
+            var msj = document.getElementById("confirm_msj");
+            msj.style.display = "none";
+        });
+        function viewCon() {
+            setTimeout(location.replace("messages.html?User=" + user), 2000);
+        }
+        function sendMessage() {
+            //loader_container.style.display = "inline-block";
+            var remember = document.getElementById('personalInfo');
+            var info = false;
+            if (remember.checked) {
+                info = true;
+            }
+            $.ajax({
+                url: url_service + "/Home/sendEmail",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    'retailer_name': $.urlParam('User'),
+                    "manufacturer_name": manufacturesNAME.innerText,
+                    "msg": message.value,
+                    "senderType": "Retailer",
+                    "personalInfo": info
+                },
+                success: function (data) {
+                    if (data == true) {
+                        message.value = "";
+                        //loader_container.style.display = "none";
+                        $("#manufacturer_message_form").removeClass("messageForm");
+
+                        headeForm.style.display = "none";
+                        message.value = "";
+                        $("#manufacturer_message_form").removeClass("messageForm");
+                        var msj = document.getElementById("confirm_msj");
+                        msj.style.display = "block";
+                        msj.style.width = "100%";
+                        msj.style.height = "100%";
+                        personalInfo_label.style.display = "none";
+                        $(".form").css({
+                            'position': '',
+                            'bottom': '',
+                            'borderRadius': '',
+                            'width': '',
+                            'marginLeft': ''
+                        });
+                        manufacturesADD.style.display = "block";
+                        prod_N.style.display = "block";
+                        manufacturesYEAR.style.display = "block";
+                        manufacturesIMG_content.style.width = "70px";
+                        manufacturesIMG_content.style.height = "70px";
+                        manufacturesNAME.style.marginLeft = "0px";
+                        include_info.style.display = "none";
+                    }
+                }
+            });
+        }
+        function aww() {
+            $.ajax({
+                url: url_service + "/Home/awesome",
+                type: "POST",
+                dataType: "json",
+                data: { 'product_id': id_prod_forS.innerText, "user_name": $.urlParam('User') },
+                success: successFuncAw
+            });
+        }
+        function successFuncAw(data, status) {
+            if (data == false) {
+                $("#awNotify").fadeIn(500);
+                awNotify.innerText = "You already rated this product!";
+                $("#awNotify").fadeOut(4000);
+            } else {
+                $("#awNotify").fadeIn(500);
+                awNotify.innerText = "Awesome!";
+                productAWE.innerText = data;
+                $("#awNotify").fadeOut(4000);
+            }
+        }
+        $(document).ready(function () {
+            $("#navbar").css("position", "fixed");
+            $(window).scroll(function () {
+                var addRemClass = $(window).scrollTop() > 0 ? 'addClass' : 'removeClass';
+                $("#navbar")[addRemClass]('bgChange');
+                $(".enl-wel2")[addRemClass]('bgChange');
+            });
+        });
+        function searchManufactures() {
+            var checkedValue = "";
+            var inputElements = document.getElementsByClassName('filt_imput');
+            for (var i = 0; inputElements[i]; ++i) {
+                if (inputElements[i].checked) {
+                    checkedValue = checkedValue + "," + inputElements[i].value;
+                }
+            }
+            var checkedValue1 = "";
+            var inputElements1 = document.getElementsByClassName('filt_imput1');
+            for (var i = 0; inputElements1[i]; ++i) {
+                if (inputElements1[i].checked) {
+                    checkedValue1 = checkedValue1 + "," + inputElements1[i].value;
+                }
+            }
+            setTimeout(location.replace("manufactures.html?par=" + checkedValue + "|" + checkedValue1 + "&User=" + $.urlParam('User')), 2000);
+        }
+        function getProductsFrom(value, action) {
+            $.ajax({
+                url: url_service + "/Home/getProductImg",
+                type: "POST",
+                dataType: "json",
+                data: { 'idProducts': value.replace("*", "'"), "action": action, "device": "app" },
+                success: successFuncGetProductImg
+            });
+        }
+        function setVideo(id) {
+            try {
+                if (id != "" && id != null) {
+                    Videos.style.display = "block";
+                    var vid_from_db = "https://www.youtube.com/embed/" + id; // data.result.product_video_url.split("?v=")[1];
+                    setTimeout("sv('" + vid_from_db + "')", 5000);
+                }
+            } catch (ex) { }
+        }
+        function sv(vids) {
+            vid.src = vids;
+        }
+        function successFuncGetProductImg(data, status) {
+            //var idVid = data.result.product_video_url.split("?v=")[1];
+            //setVideo(idVid);
+            manufacturesNAME.innerHTML = data.result.name_manofacturer;
+            toSendMSG.innerHTML = "Send " + data.result.name_manofacturer + " a message";
+            MadeIn.innerHTML = "Product Made In: " + data.result.location;
+            manufacturesADD.innerHTML = data.result.manuLocation.split(",")[1] + ", " + data.result.manuLocation.split(",")[2];
+
+            L.mapbox.accessToken = 'pk.eyJ1IjoiY2FsaXRvIiwiYSI6ImNpbmpjbDdtZjB4aTh1a2x5cGY2MnI0MjYifQ.TS2yo3mWrHCzxVwXNHwrrg';
+            var geocoder = L.mapbox.geocoder('mapbox.places'), map = L.mapbox.map('map', 'examples.map-h67hf2ic');
+            
+            geocoder.query(data.result.manuLocation, showMap);
+
+            function showMap(err, data) {
+                // The geocoder can return an area, like a city, or a
+                // point, like an address. Here we handle both cases,
+                // by fitting the map bounds to an area or zooming to a point.
+                //map.setStyle('');
+
+                if (data.lbounds) {
+                    map.fitBounds(data.lbounds);
+                } else if (data.latlng) {
+                    map.setView([data.latlng[0], data.latlng[1]], 13);
+
+                }
+            }
+
+            //location_data = data.result.manuLocation;
+
+            productDESC.innerHTML = data.result.description;
+            productNAME.innerHTML = data.result.product_name;
+            productAWE.innerHTML = data.result.awesome;
+            id_prod_forS.innerHTML = data.result.id_products;
+            //var width = parseInt(document.getElementById('navbar').offsetWidth);
+                try {
+                    //productIMG.src = 'data:image/jpeg;base64,' + base64ArrayBuffer(data.result.product_images);
+                    productIMG.src = url_service + "/img_data" + data.result.product_images_url.replace(/%20/g, " ").replace(/[\\"]/g, '/').split("img_data")[1];
+                    productIMG.style.display = "inline-block";
+                    $('#fillIm').css('width', width);
+                } catch (ex) { }
+
+            if (data.images.length > 0) {
+                try {
+                    if (data.images[1].image_url == "") {
+                        $('#productIMG_cont1').remove();
+                    }
+                    if (data.images.length < 2 || data.images[2].image_url == "") {
+                        $('#productIMG_cont2').remove(); $('#productIMG_cont3').remove(); $('#productIMG_cont4').remove(); $('#productIMG_cont5').remove();
+                    }
+                    if (data.images.length < 3 || data.images[3].image_url == "") {
+
+                        $('#productIMG_cont3').remove(); $('#productIMG_cont4').remove(); $('#productIMG_cont5').remove();
+                    }
+                    if (data.images.length < 4 || data.images[4].image_url == "") {
+                        $('#productIMG_cont4').remove(); $('#productIMG_cont5').remove();
+                    }
+                    if (data.images.length < 5 || data.images[5].image_url == "") {
+                        $('#productIMG_cont5').remove();
+                    }
+                } catch (ex) { }
+                for (i = 0; i < data.images.length; i++) {
+
+                    setTimeout("fillSlider(" + data.images[i].id_products_images + ")", 1000);
+                }
+
+            } else {
+                $('#productIMG_cont1').remove();
+                $('#productIMG_cont2').remove();
+                $('#productIMG_cont3').remove();
+                $('#productIMG_cont4').remove();
+                $('#productIMG_cont5').remove();
+                jssor_1_slider_init();
+            }
+            $.ajax({
+                url: url_service + "/Home/getUsuario",
+                type: "POST",
+                dataType: "json",
+                data: { 'nombre': data.result.usuario1 },
+                success: successFuncgetUsuario
+            });
+            }
+
+        function fillSlider(id) {
+            try {
+                $.ajax({
+                    url: url_service + "/Home/getImages1",
+                    type: "POST",
+                    dataType: "json",
+                    data: { 'id_image': id },
+                    success: function (data) {
+                        if (($('#productIMG1').attr('src') == '' || $('#productIMG1').attr('src') == 'null') && data.image_url != null && data.image_url != "") {
+                            productIMG1.src = url_service + "/img_data" + data.image_url.replace(/%20/g, " ").replace(/[\\"]/g, '/').split("img_data")[1];
+                        } else {
+                            if (($('#productIMG2').attr('src') == '' || $('#productIMG1').attr('src') == 'null') && data.image_url != null && data.image_url != "") {
+                                productIMG2.src = url_service + "/img_data" + data.image_url.replace(/%20/g, " ").replace(/[\\"]/g, '/').split("img_data")[1];
+                            } else {
+                                if (($('#productIMG3').attr('src') == '' || $('#productIMG1').attr('src') == 'null') && data.image_url != null && data.image_url != "") {
+                                    productIMG3.src = url_service + "/img_data" + data.image_url.replace(/%20/g, " ").replace(/[\\"]/g, '/').split("img_data")[1];
+                                } else {
+                                    if (($('#productIMG4').attr('src') == '' || $('#productIMG1').attr('src') == 'null') && data.image_url != null && data.image_url != "") {
+                                        productIMG4.src = url_service + "/img_data" + data.image_url.replace(/%20/g, " ").replace(/[\\"]/g, '/').split("img_data")[1];
+                                    } else {
+                                        if (($('#productIMG5').attr('src') == '' || $('#productIMG1').attr('src') == 'null') && data.image_url != null && data.image_url != "") {
+                                            productIMG5.src = url_service + "/img_data" + data.image_url.replace(/%20/g, " ").replace(/[\\"]/g, '/').split("img_data")[1];
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        jssor_1_slider_init();
+                    }
+
+                });
+            } catch (ex) {
+            }
+        }
+
+
+        function successFuncgetUsuario(data, status) {
+            var obj = data.manu;
+            prod_N.innerHTML = obj.prod_num + " Products";
+            myString = /Date\((\d+)\)/.exec(obj.year_established)[1];
+            var ts = parseInt(myString) * 0.001;
+            var un = moment.unix(ts).format("YYYY");
+            manufacturesYEAR.innerHTML = "Est: " + un;
+            var tags = obj.manufactures_keywords.split(',');
+            var tags_final = "";
+            for (i = 0; i < tags.length; i++) {
+                if (tags[i] != "") {
+                    tags_final = tags_final + "<a style='text-decoration: none;' href='results.html?User=" + $.urlParam('User') + "&searchBy=" + tags[i] + "'><span class='tags_class'>" + tags[i] + "</span></a>";
+                }
+            }
+            manufacturesKEYW.innerHTML = tags_final;
+            $.ajax({
+                url: url_service + "/Home/getmanufacturesIMG",
+                type: "POST",
+                dataType: "json",
+                data: { 'nombre': obj.name_manofacturer },
+                success: getmanufacturesIMG
+            });
+            window.setTimeout('getLocation()', '1000');
+        }
+        function getmanufacturesIMG(data, status) {
+            manufacturesIMG_content.style.backgroundImage = "url('" + url_service + "/img_data" + data.replace(/[\\"]/g, '/').split("img_data")[1] + "')";
+
+            $.ajax({
+                url: url_service + "/Home/getAllProductId1",
+                type: "POST",
+                dataType: "json",
+                data: { "retailer": $.urlParam('User') },
+                success: showProducts
+            });
+        }
+        function showProducts(data, status) {
+            var i = 0;
+            var myTimer = setInterval(function () {
+                if (!$.timers.length) {
+                    if (i < 10) {
+                        getProductsFromList(data.result[i], "list");
+                        i = i + 1;
+                        if (i > data.result.length) {
+                            clearInterval(myTimer);
+                        }
+                    } else { clearInterval(myTimer); }
+                }
+
+            }, 1000);
+            //loader_container.style.display = "none";
+        }
+        function getProductsFromList(value, action) {
+            $.ajax({
+                url: url_service + "/Home/getProductImg",
+                type: "POST",
+                dataType: "json",
+                data: { 'idProducts': value, "action": action },
+                success: successFuncGetProductImgList
+            });
+        }
+        var fl = "left";
+        function successFuncGetProductImgList(data, status) {
+            try {
+                if (data.action == "list") {
+                    var st = "getProductsFrom('" + data.result.id_products + "', null)";
+                    var aw = "0";
+                    if (data.result.awesome > 0) {
+                        aw = data.result.awesome;
+                    }
+                    //if (fl == "left") {
+                    $('<div class="product-div">' +
+                        '<a href="product.html?Product=' + data.result.product_name.replace("'", "*").replace(/&/g, "!") +
+                        '&User=' + $.urlParam('User') + '"><img class="img-product" id="Img2" src="' +
+                        url_service + "/img_data" + data.result.product_images_url.replace(/[\\"]/g, '/').split("img_data")[1] + '" /></a>' +
+                        '<div class="txt-product">' +
+                        '<span class="Span3">' + data.result.product_name + '</span>' +
+                        '<div class="awesome-div"><span class="Awesome">' + aw + '</span>' +
+                        '<img class="style-awe-img" src="img/btn-awesome.png" alt="awesome"/>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>').appendTo('#prods');
+                }
+            } catch (ex) { }
+            $('.productItem').fadeIn(500).css({ "display": "inline-block", "opacity": "1" });
+        }
+</script>
+    <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+    <script src="js/slider/swiper.min.js"></script>
+</body>
+</html>
+

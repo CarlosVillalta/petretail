@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300,600,700,900' rel='stylesheet' type='text/css'>
+        
+    <!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,500,900' rel='stylesheet' type='text/css'>-->
+
+    <script src="js/jquery-1.12.1.min.js"></script>
+    <script src="cordova.js"></script>
+    <!--<script src="js/platformOverrides.js"></script>-->
+    <script src="js/index.js"></script>
+    <style>
+        #map {
+            position: fixed !important;
+            top: 45px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ctn-header">
+        <!--<div id="menu-1" class="menu-app"></div>-->
+        <a id="back_link" href="home.html">
+            <div id="back" class="back_button">
+                <img style="width: 100%; height: 100%" src="img/flecha_.png" alt="">
+            </div>
+        </a>
+        <span id="usS" class="ti-pag" style="color: white;">Location</span>
+        <!--<div class="icon_bone"></div>-->
+        <!--<div class="buscar-page" onclick=""><img id="Img2" src="img/lupa.png" /></div>-->
+        <!--<div class="log-page" onclick="showHideFilter()"><img id="imh-home" src="img/filtro.png" /></div>-->
+        <!--<div class="chat-page" onclick=""><img id="Img1" src="img/chat.png" /></div>-->
+    </div>
+    <!--<div class="div-page-tittle" style="padding: 2% !important;">
+      <div class="reg-back"><a id="back" href=""><img id="flecha-back" src="img/flecha.png"/></a></div>
+      <span class="ti-pag">Location</span>
+      </div>-->
+    <p></p>
+    <div id="map" style="width: 100%; height: 90%; position: fixed"></div>
+
+    <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+    <script>
+        $.urlParam = function (name) {
+            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results == null) {
+                return null;
+            }
+            else {
+                return results[1] || 0;
+            }
+        }
+        back_link.href = "product.html?User=" + $.urlParam('User') + "&Product=" + $.urlParam('Product');
+        //var la = $.urlParam('lat').replace("%20","");
+        //var lo = $.urlParam('long').replace("%20", "");
+
+        //L.mapbox.accessToken = 'pk.eyJ1IjoiY2FsaXRvIiwiYSI6ImNpbmpjbDdtZjB4aTh1a2x5cGY2MnI0MjYifQ.TS2yo3mWrHCzxVwXNHwrrg';
+        //var geocoder = L.mapbox.geocoder('mapbox.places'), map = L.mapbox.map('map', 'examples.map-h67hf2ic');
+        //map = map.zoomOut(
+        //geocoder.query($.urlParam('place').replace(/%20/g, " "), showMap);
+
+        //function showMap(err, data) {
+        //    // The geocoder can return an area, like a city, or a
+        //    // point, like an address. Here we handle both cases,
+        //    // by fitting the map bounds to an area or zooming to a point.
+        //    if (data.lbounds) {
+        //        map.fitBounds(data.lbounds);
+        //    } else if (data.latlng) {
+        //        map.setView([data.latlng[0], data.latlng[1]], 13);
+        //        map.zoomIn(6);
+        //    }
+        //}
+
+        (function (global) {
+            "use strict";
+
+            //document.addEventListener( 'deviceready', onDeviceReady.bind( this ), false );
+
+            function onDeviceReady() {
+                // Handle the Cordova pause and resume events
+                document.addEventListener('pause', onPause.bind(this), false);
+                document.addEventListener('resume', onResume.bind(this), false);
+
+                // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
+                loadMapsApi();
+            };
+
+            function onPause() {
+                // TODO: This application has been suspended. Save application state here.
+                loadMapsApi();
+            };
+
+            function onResume() {
+                // TODO: This application has been reactivated. Restore application state here.
+                loadMapsApi();
+            };
+
+            function loadMapsApi() {
+                //if (navigator.connection.type === Connection.NONE || google.maps) {
+                if (navigator.connection.type === Connection.NONE || (global.google !== undefined && global.google.maps)) {
+                    return;
+                }
+                $.getScript('http://maps.googleapis.com/maps/api/js?key=AIzaSyCz8yRR1ycD4CHKxks9rtMSCKUCoIaw-eU&sensor=true&callback=onMapsApiLoaded');
+            }
+
+            var styles = [
+            {
+                "featureType": "administrative",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#444444"
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative.country",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "color": "#06d0a6"
+                    },
+                    {
+                        "weight": "2"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "color": "#f2f2f2"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "saturation": -100
+                    },
+                    {
+                        "lightness": 45
+                    }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "simplified"
+                    }
+                ]
+            },
+            {
+                "featureType": "road.arterial",
+                "elementType": "labels.icon",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "transit",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "color": "#46bcec"
+                    },
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#6bf2e4"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#0081dd"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "labels.text.stroke",
+                "stylers": [
+                    {
+                        "color": "#ffffff"
+                    },
+                    {
+                        "gamma": "1"
+                    },
+                    {
+                        "weight": "3"
+                    }
+                ]
+            }
+            ];
+            var latitude;
+            var longitude;
+
+            global.onMapsApiLoaded = function () {
+                var sit = $.urlParam('place').replace(/%20/g, " ");
+                var geo = new google.maps.Geocoder;
+                geo.geocode({ 'address': sit }, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        var myLatLng = results[0].geometry.location;
+                        //document.getElementById("geo").innerHTML = "Mi ubicación: <span id='latMy'>" +
+                        //    position.coords.latitude + "</span>,<span id='longMy'>" +
+                        //    position.coords.longitude + "</span>,<br>" + "Ubicación de Sitio: <span id='latSitio'>" +
+                        latitude = myLatLng.lat(); //+ "</span>, <span id='longSitio'>" +
+                        longitude = myLatLng.lng(); //+ " </span>";
+
+                        var mapOptions = {
+                            //center: new google.maps.LatLng(-34.397, 150.644),
+                            center: new google.maps.LatLng(latitude, longitude),
+                            zoom: 3,
+                            mapTypeId: google.maps.MapTypeId.ROADMAP,
+                            mapTypeControlOptions: { mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style'] }
+                        };
+
+                        //var map = new google.maps.Map(document.getElementById("map"), {});
+                        var styledMap = new google.maps.StyledMapType(styles, { name: "Styled Map" });
+                        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+                        map.mapTypes.set('map_style', styledMap);
+                        map.setMapTypeId('map_style');
+                        var marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(latitude, longitude),
+                            map: map,
+                            title: $.urlParam('Product'),
+                            draggable: false
+                        });
+                    } else {
+                        //ret = null;
+                    }
+                })
+            };
+
+            document.addEventListener("deviceready", onDeviceReady, false);
+
+        })(window);
+
+    </script>
+</body>
+</html>
+
+

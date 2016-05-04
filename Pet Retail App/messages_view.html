@@ -1,0 +1,549 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300,600,700,900' rel='stylesheet' type='text/css'>
+        
+    <!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,500,900' rel='stylesheet' type='text/css'>-->
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="js/script.js" type="text/javascript"></script>
+    <title>Pet Shop App</title>
+</head>
+<body style=" background-color: rgb(236, 236, 236);">
+    <div class="ctn-ppal">
+        <div class="ctn-header">
+            <!--<div id="menu-1" class="menu-app"></div>-->
+             <a id="back_link" href="home.html"><div id="back" class="back_button"><img style="width:100%;height:100%" src="img/flecha_.png" alt=""></div></a>  
+             <!--<div class="icon_bone"></div>--> 
+            <!--<div class="buscar-page" onclick=""><img id="Img2" src="img/lupa.png" /></div>      
+            <div class="log-page" onclick="showHideFilter()"><img id="imh-home" src="img/filtro.png" /></div>  
+            <div class="chat-page" onclick=""><img id="Img1" src="img/chat.png" /></div>    -->      
+            <span id="usS" class="ti-pag"></span>   
+         </div><span id="us" class="ti-pag"></span>
+        <!--<div class="div-page-tittle" style="padding: 2% !important;">
+            <div class="reg-back">
+                <a id="back" href="">
+                    <img id="flecha-back" src="img/flecha.png" /></a>
+            </div>-->
+            
+        <!--</div>-->
+        <div id="prods"></div>
+    </div>
+    <!--<div class="enl-wel2">
+        <div id="contact" class="btn-welcome2 color2"><span>Contact</span></div>
+    </div>-->
+    <div id="manufacturer_message_form messageForm" style="display: block" class="conte-info">
+        
+        <div class="form">
+            <!--<p style="width: 100%;text-align: center;font-size: 16px;margin-top: -30px;margin-bottom: -5px;">Contact</p>
+            <input id="cancel" type="button" value="Cancel">-->
+            <div class="manu_to_send">
+                <img src="" alt="" class="imgTS" id="img_toSend">
+                <span class="spTS" id="manu_toSend"></span>
+            </div>
+            <!--<div style="margin-left: -1%; width: 50%; max-width: 100px; display: inline-block; float: left;">-->
+                <div style="width: 50%; display:none">
+                    <div class="manuData" id="manufacturesNAME"></div>
+                    <div class="manuData" id="manufacturesADD"></div>
+                    <div class="manuData" id="manufacturesYEAR"></div>
+                    <div class="manuData" id="manufacturesKEYW"></div>
+                </div>
+                <textarea style="  height: 30%;" name="" id="message" cols="30" rows="5"></textarea>
+                <!--<div class="con-btn">-->
+                <div style="margin: 10px 0px;">
+                     <div class="roundedOne">
+	                    <input id="personalInfo" style="color: transparent; opacity: 0; z-index: 99; position: absolute;" type="checkbox" value="None" id="Checkbox1" name="check" />
+	                    <label for="roundedOne"></label>
+                    </div>
+                    <!--<input class="filt_imput" type="checkbox" id="personalInfo" name="personalInfo" value="Treats/Food" style="float:left;max-width: 20px;height: 20px;  margin-left: 20px !important;">-->
+                    <label id="personalInfo_label" for="personalInfo" >Include my personal information <br>
+                    <span style="font-size: 0.7rem;color: rgb(116, 116, 116);">For security reasons this does not send your tax ID</span>.</label>
+                    
+                </div>
+                <input id="sendMessage" onclick="sendMessage()" type="button" value="Send message">
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <div id="confirm_msj" class="confirm-msj top01">
+            <div class="div-reg-company centere">
+                <img id="img-reg-confim" class="confir-img" src="img/logo-confirmacion.png" alt="logo-confirm" />
+                <p class="reg-tex-s01">Congratulations!</p>
+                <p class="reg-tex-s02">Your messsage has been sent!</p>
+                <div class="button_done_reg">Done</div>
+            </div>
+        </div>
+    <!--<div id="loader_container" class="loader_container">
+        <img class="loader_inside" src="img/346.gif" alt="">
+        <span></span>
+    </div>-->
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/b64.js"></script>
+    <script type="text/javascript" src="js/moment.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+</script>
+    <style>
+        #back {
+            display: inline-block;
+            position: relative;
+            top: 0px;
+            float: left;
+            margin-left: -0%;
+        }
+        #prods {
+            margin-top: 40px;
+            margin-bottom: 250px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            display: inline-block;
+            box-shadow: 0px 36px 10px -39px black;
+            vertical-align: bottom;
+            max-height: 58%;
+            overflow-y: scroll;
+        }
+
+        input[type=checkbox] + label {
+            color: #545454;
+            font-size: large;
+            font-weight: 400;
+            z-index: 1;
+        }
+        /* ROUNDED ONE */
+        .roundedOne {
+            width: 28px;
+            height: 28px;
+            float: left;
+            display: inline-block;
+            margin-left: 10px !important;
+            margin-top: 0px !Important;
+            background: #fcfff4;
+            background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            background: -o-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            background: -ms-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
+            margin: 20px auto;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+            -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+            -moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+            box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .roundedOne label {
+            cursor: pointer;
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+            left: 4px;
+            top: 4px;
+            -webkit-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+            -moz-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+            box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+            background: -webkit-linear-gradient(top, #222 0%, #45484d 100%);
+            background: -moz-linear-gradient(top, #222 0%, #45484d 100%);
+            background: -o-linear-gradient(top, #222 0%, #45484d 100%);
+            background: -ms-linear-gradient(top, #222 0%, #45484d 100%);
+            background: linear-gradient(top, #222 0%, #45484d 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222', endColorstr='#45484d',GradientType=0 );
+        }
+
+        .roundedOne label:after {
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+            filter: alpha(opacity=0);
+            opacity: 0;
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: #00BF9B;
+            background: -webkit-linear-gradient(top, #00BF9B 0%, #00BF9B 100%);
+            background: -moz-linear-gradient(top, #00BF9B 0%, #00BF9B 100%);
+            background: -o-linear-gradient(top, #00BF9B 0%, #00BF9B 100%);
+            background: -ms-linear-gradient(top, #00BF9B 0%, #00BF9B 100%);
+            background: linear-gradient(top, #00BF9B 0%, #00BF9B 100%);
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+            top: 2px;
+            left: 2px;
+            -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+            -moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+            box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .roundedOne label:hover::after {
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+            filter: alpha(opacity=30);
+            opacity: 0.3;
+        }
+
+        .roundedOne input[type=checkbox]:checked + label:after {
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+            filter: alpha(opacity=100);
+            opacity: 1;
+        }
+/*ñññññññññññññ*/
+        #personalInfo_label{
+            font-size: 0.9rem;
+            line-height: 1rem;
+            display: block;
+            max-width: 80%;
+            float: left;
+            margin-bottom: 65px;
+            color: black;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        .conte-info input, .conte-info textarea {
+            display: block;
+            border: none;
+            width: 90%;
+            font-family: roboto;
+            padding: 6%;
+        }
+        .manu_to_send {
+            display:none;
+            color: white;
+            font-size: 1.2rem;
+            vertical-align: top;
+            background-color: rgb(240, 240, 240);
+            margin-left: -5%;
+            width: 110%;
+            margin-top: 10px;
+            color: white;
+            font-size: 1.2rem;
+            vertical-align: top;
+        }
+        .imgTS {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 10px;
+        }
+        .spTS {
+            color: rgb(19, 181, 144);
+            font-size: 1.2rem;
+            vertical-align: top;
+            line-height: 4rem;
+        }
+        #sendMessage {
+            color: white;
+            width: 100%;
+            max-width: 1000px;
+            background-color: #37BEAF;
+            border: none;
+            font-size: 1rem;
+            position: fixed;
+            bottom: 0px;
+            min-height: 40px;
+            line-height: 5px;
+        }
+
+        #cancel {
+            color: rgb(108, 108, 108);
+            position: absolute;
+            left: 30px;
+            background-color: transparent;
+            border: none;
+            text-align: left;
+            font-size: 16px;
+            margin-top: -28px;
+            width: 100px;
+            line-height: 0px;
+        }
+        .loader_container {
+            top: 0px;
+        }
+
+        .button_done_reg {
+            color: white;
+            background-color: rgb(88, 203, 199);
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        @media screen and (min-device-width: 520px) {
+            #prods {
+                max-width: 100%;
+                width: 100%;
+                margin-left: auto;
+                display: block;
+                margin-right: auto;
+            }
+            #sendMessage {
+                padding:3%;
+            }
+        }
+    </style>
+    <script>
+       var url_service = "http://petretailapp-001-site1.btempurl.com/petretail";
+         //var url_service = "http://localhost:7850";
+        $(document).ready(function (e) {
+            $('#menu-1').click(function () {
+                if (cssmenu.style.display == "block") {
+                    cssmenu.style.display = "none";
+                } else {
+                    cssmenu.style.display = "block";
+                }
+            });
+            $.urlParam = function (name) {
+                var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+                if (results == null) {
+                    return null;
+                }
+                else {
+                    return results[1] || 0;
+                }
+            }
+            usS.innerHTML = "Chat with " + $.urlParam('Man').replace(/%20/g, " ").replace("*", "'");;
+            back_link.href = "messages.html?User=" + $.urlParam('User');
+
+            $.ajax({
+                url: url_service + "/Home/getMessages1",
+                type: "POST",
+                dataType: "json",
+                data: { "id": $.urlParam('messages_id'), "user": $.urlParam('User'), 'man': $.urlParam('Man').replace("*", "'").replace(/%20/g, " ") },
+                success: showMessages
+            });
+            windowheight = $(window).height();
+            t = windowheight - 102;
+            $(".ctn-ppal").css('height', t);
+        });
+        $('#contact').click(function () {
+            $("#manufacturer_message_form").addClass("messageForm");
+            personalInfo_label.style.display = "block";
+        });
+        $('#cancel').click(function () {
+            message.value = "";
+            $("#manufacturer_message_form").removeClass("messageForm");
+            personalInfo_label.style.display = "none";
+        });
+        $(".button_done_reg").click(function () {
+            var msj = document.getElementById("confirm_msj");
+            msj.style.display = "none";
+        });
+        function sendMessage() {
+            //loader_container.style.display = "inline-block";
+            var remember = document.getElementById('personalInfo');
+            var info = false;
+            if (remember.checked) {
+                info = true;
+            }
+
+            $.ajax({
+                url: url_service + "/Home/sendEmail",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    'retailer_name': $.urlParam('User'),
+                    "manufacturer_name": $.urlParam('Man').replace("*", "'").replace(/%20/g, " "),
+                    "msg": message.value,
+                    "senderType": "Retailer",
+                    "personalInfo": info
+                },
+                success: function (data) {
+                    if (data == true) {
+                        message.value = "";
+                        //loader_container.style.display = "none"
+                        //navigator.notification.alert("Message sent!", "", "Pet Retail");
+                        $("#manufacturer_message_form").removeClass("messageForm");
+                        var msj = document.getElementById("confirm_msj");
+                        msj.style.display = "block";
+                        msj.style.width = "100%";
+                        msj.style.height = "100%";
+                        //al("Message sent!");
+                        $.ajax({
+                            url: url_service + "/Home/getMessages1",
+                            type: "POST",
+                            dataType: "json",
+                            data: { "id": $.urlParam('messages_id'), "user": $.urlParam('User') },
+                            success: showMessages
+                        });
+                    }
+                }
+            });
+        }
+        function showMessages(data, status) {
+            //img_toSend.src = data.us.foto;
+
+            manu_toSend.innerText = $.urlParam('Man').replace("*", "'").replace(/%20/g, " ");
+            //loader_container.style.display = "none";
+            us.innerText = $.urlParam('Man').replace("*", "'").replace(/%20/g, " ");//.replace(/[0-9]/g, '').replace('|', '').replace($.urlParam('User'), '');
+            prods.innerHTML = "";
+            var i = 0;
+            var myTimer = setInterval(function () {
+                if (!$.timers.length) {
+                    //content_loader_home.style.display = "inline-block";
+                    try {
+                        gettinFullMessage(data.msg[i], "list");
+                        i = i + 1;
+                        if (i > data.msg.length) {
+                            clearInterval(myTimer);
+                            content_loader_home.style.display = "none";
+                        }
+                    } catch (ex) { }
+                }
+            }, 100);
+
+        }
+
+        function gettinFullMessage(msg, action) {
+            myString = /Date\((\d+)\)/.exec(msg.message_date)[1];
+            var ts = parseInt(myString) * 0.001;
+            var un = moment.unix(ts).format("MMMM DD - HH:mm");
+            //$.ajax({
+            //    url: url_service + "/Home/imageForMSG",
+            //    type: "POST",
+            //    dataType: "json",
+            //    data: { 'userName': msg.usuario1, },
+            //    success: function (data) {
+            //////    }
+            //////});
+                    var cl = "";
+                    var sideImg = "left";
+                    if (msg.usuario1 != $.urlParam('User')) {
+                        cl = "left_message";
+                        sideImg = "right";
+                    }
+                    var img = "sent_img.png";
+                    if (msg.message_state == "readed") {
+                        img = "readed_img.png";
+                    }//$(
+                    prods.innerHTML = 
+                    "<div class='" + cl +
+                        " product-div' style='padding: 3px 5px;'>" +
+                        "<p style='color: rgb(148, 148, 148);margin-top: 10px;width: 100%; display: inline-block;text-align: center; margin-bottom: 5px;'>" +
+                        un + "</p>" +
+                        //"<img style='float:" + sideImg + "' src='" + data.foto + "' />" //+<span class='' style='color:rgb(0, 181, 133) !important;font-weigth:500;'>" + msg.usuario1 +
+                        //"</span> "
+                        "<img style='width: 15px;margin-top: 2px;margin-right: 5px;height: auto;' src='img/" +
+                        img + "'/><span class='name_manu'>" + msg.message_message + "</span>" +
+                        "</div>" + prods.innerHTML;//).appendTo("#prods");
+                    //$('#prods').bind('scroll', function () {
+                    if ($('#prods').scrollTop() + $('#prods').innerHeight() > ($('#prods')[0].scrollHeight - 100)) {
+                        prods.scrollTop = prods.scrollHeight - prods.clientHeight;
+                    }
+                    //});
+                
+                        
+//<div class='splitter'></div>
+            ////////    }
+            ////////});
+            
+        }
+        function al(txt) {
+            $('#adv').fadeIn(500);
+            $('#adv').fadeOut(3000);
+            adv.innerHTML = txt;
+        }
+        //$('#prods').bind('scroll', function () {
+        //if ($('#prods').scrollTop() + $('#prods').innerHeight() <= $('#prods')[0].scrollHeight) {
+        //    //prods.scrollTop = prods.scrollHeight - prods.clientHeight;
+        //    message.value = $('#prods').scrollTop() + $('#prods').innerHeight()+ " = " + ($('#prods')[0].scrollHeight - 50);
+        //}
+        //});
+ </script>
+    <style>
+        .splitter {
+            background-color: rgb(223, 223, 223);
+            width: 96%;
+            height: 1px;
+            display: inline-block;
+            margin-left: 2%;
+            margin-bottom: 7px;
+        }
+        .messageForm input, .messageForm textarea {
+            display: inline-block !important;
+            border-radius: 0px;
+            border: solid 0px gray;
+            width: 100%;
+            height: 170px;
+            outline: none;
+            margin-left: -6%;
+            padding: 5%;
+            font-family: roboto;
+        }
+        .form {
+            background-color: rgb(236, 236, 236);
+            width: 100%;
+            display: inline-block;
+            padding: 0% 0%;
+            position: fixed;
+            bottom: 0px;
+            left: 4%;
+              height: 40%;
+        }
+        .messageForm {
+            margin-top: 0px;
+            display: inline-block !important;
+            left: 0px;
+            height: 100%;
+            width: 96%;
+        }
+
+        .ti-pag {
+            max-width: 80%;
+            margin-left: auto;
+            text-align: center;
+            margin-right: auto;
+            color: white;
+            font-size: 1rem;
+        }
+        .product-div p {
+            color: gray;
+            float: right;
+            margin: 5px;
+        }
+        .product-div img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            float: left;
+            margin: 5px;
+        }
+        .name_manu {
+            font-size: 14px;
+            color: rgb(0, 0, 0) !important;
+            font-weight: 400;
+            vertical-align: top;
+            float: left;
+            width: 90%;
+            text-align:left;
+            margin-bottom:10px;
+        }
+
+        .left_message {
+            background-color: white !important;
+            float: right !important;
+            margin-right: 0px !important;
+            text-align:right;
+        }
+
+        .product-div {
+            border: solid 0px #C3C3C3;
+            border-radius: 8px 0px 0px 8px;
+            margin: 0.5%;
+            width: 80%;
+            float: left;
+            box-shadow: 0px 0px 0px rgb(163, 163, 163);
+            margin-bottom: 5px;
+            margin-top: 0px;
+            background-color: transparent;
+        }
+    </style>
+</body>
+</html>

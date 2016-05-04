@@ -1,0 +1,466 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300,600,700,900' rel='stylesheet' type='text/css'>
+        
+    <!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,500,900' rel='stylesheet' type='text/css'>-->
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="js/script.js" type="text/javascript"></script>
+    <title>Pet Shop App</title>
+</head>
+<body>
+    <div class="ctn-ppal">
+        <div class="ctn-header" style="border-bottom:solid 2px white">
+            <!--<div id="menu-1" class="menu-app"></div>-->
+            <a id="back_link" href="login.html">
+                <div id="back" class="back_button">
+                    <img style="width: 100%; height: 100%" src="img/flecha_.png" alt="">
+                </div>
+            </a>
+            <span id="usS" class="ti-pag" style="color: white;font-weight: 600;">Sign Up!</span>
+            <!--<div class="icon_bone"></div>-->
+            <!--<div class="buscar-page" onclick=""><img id="Img2" src="img/lupa.png" /></div>-->
+            <!--<div class="log-page" onclick="showHideFilter()"><img id="imh-home" src="img/filtro.png" /></div>-->
+            <!--<div class="chat-page" onclick=""><img id="Img1" src="img/chat.png" /></div>-->
+        </div>
+        <div class="ctn-conte-filter">
+            <!--<div class="div-register-tittle"><span class="ti-pag">Sign up!</span></div>-->
+            
+
+            <div class="register-ti-div"><span class="ti-register">About the company</span></div>
+            <div class="div-reg-company" style="margin-top: 5%;">
+                <img id="myImg1" onclick="getPhoto()" src="" alt="" />
+                <label style="margin-bottom: 25px;width: 100%;text-align: center;" for="name-comp" class="reg-lb">Avatar image</label>
+
+                <label for="name-comp" class="reg-lb">Name of Company</label>
+                <input class="reg-campos" type="text" value="" id="name_retailer" name="name-comp" />
+                <label for="user" class="reg-lb">Username</label>
+                <input class="reg-campos" type="text" value="" id="username" name="user" />
+                <input class="reg-campos" type="text" value="" id="old_username" name="user" style="display: none;" />
+                <label for="email" class="reg-lb">Email</label>
+                <input class="reg-campos" type="email" value="" id="email_retailer" name="email" />
+                <label id="changePass" for="psw" class="reg-lb">Password</label>
+                <input class="reg-campos" type="password" value="" id="pass" name="psw" />
+                <label for="copsw" class="reg-lb">Confirm Password</label>
+                <input class="reg-campos" type="password" value="" id="pass2" name="copsw" />
+                <label for="website" class="reg-lb">Company Website</label>
+                <input class="reg-campos" type="text" value="" id="website_retailer" name="website" />
+                <label for="location_manufactures" class="reg-lb" style="width: 100%; float: left;"></label>
+                <label for="tax-id" class="reg-lb">Tax ID #</label>
+                <input class="reg-campos" type="text" value="" id="tax_id_retailer" name="tax-id" />
+                <!--<input class="reg-campos" style="height: 40px; width: 50%; float: left;" id="location_manufactures1" type="text">
+                <input class="reg-campos" style="height: 40px; width: 50%; float: right; margin-right: -1%;" id="location_manufactures2" type="text" onchange="myFunction()">
+                -->
+                <label class="reg-lb">Continent:</label>
+                <select class="reg-campos" id="continent" name="continent" style="height: 42px; width: 63%; float: left;">
+                    <option value="000">-Select Continent-</option>
+                </select>
+                <label class="reg-lb">State:</label>
+                <select class="reg-campos" id="country" name="country" onchange="myFunction()" style="height: 42px; width: 63%; float: left;">
+                    <option value="000">-Select Country-</option>
+                </select>
+                <label class="reg-lb">State or Province:</label>
+
+                <!-- <select class="reg-campos"  id="state" name="state" onchange="myFunction()" style=" min-height: 40px; width: 100%;"> -->
+                <select class="reg-campos" id="state" name="state" onchange="myFunction()" style="height: 42px; width: 63%; float: left;">
+                    <option value="000">-State or Province-</option>
+                </select>
+                <script src="js/location_Cont_State_City.js"></script>
+                <script>
+                    $.each(myJson.continent, function (index, value) {
+                        $("#continent").append('<option value="' + value.name + '">' + value.name + '</option>');
+                    });
+                    $('#continent').on('change', function () {
+                        console.log($(this).val());
+                        for (var i = 0; i < myJson.continent.length; i++) {
+                            if (myJson.continent[i].name == $(this).val()) {
+                                $('#country').html('<option value="">-Select Country-</option>');
+                                $('#state').html('<option value="">-Select State or Province-</option>');
+                                $.each(myJson.continent[i].countries, function (index, value) {
+                                    $("#country").append('<option value="' + value.name + '">' + value.name + '</option>');
+                                });
+                            }
+                        }
+                    });
+                    $('#country').on('change', function () {
+                        console.log($(this).val());
+                        for (var i = 0; i < myJson.continent.length; i++) {
+                            if (myJson.continent[i].name == $('#continent').val()) {
+                                var st = myJson.continent[i].countries;
+                                for (var ii = 0; ii < st.length; ii++) {
+                                    if (st[ii].name == $('#country').val()) {
+                                        $('#state').html('<option value="">-Select State or Province-</option>');
+                                        $.each(st[ii].states, function (index, value) {
+                                            $("#state").append('<option value="' + value.name + '">' + value.name + '</option>');
+                                        });
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                </script>
+                <label for="tax-id" class="reg-lb">Location</label>
+                <input class="reg-campos" id="location_manufactures" type="text" style="margin-top: 3px; cursor: Default" readonly><br><br>
+                
+                <label for="tax-id" class="reg-lb" style="line-height: 18px;">Recieve email notifications?</label>
+                <select name="" id="email_notifications" class="reg-campos" style="height: 42px; width: 63%; float: left;">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+                <div class="register-ti-div"><span class="ti-register">Type of Retailer</span></div>
+                <div class="register-select">
+                    <p class="select-retailer" style="color: rgb(108, 108, 108); font-weight: 600;">Select up to 2 that apply</p>
+                    <div class="reg-select">
+                        <div class="div-inp">
+                            <input value="Distributor" class="reg-input2" type="checkbox" id="distri-id" name="retailer_type">
+                            <label for="distri-id">Distributor</label>
+                        </div>
+                        <br />
+                        <div class="div-inp">
+                            <input value="Online Retailer" class="reg-input2" type="checkbox" id="online-id" name="retailer_type">
+                            <label for="online-id">Online Retailer</label>
+                        </div>
+                        <br />
+                        <div class="div-inp">
+                            <input value="Pet Co or PetSmart Buyer" class="reg-input2" type="checkbox" id="pet-id" name="retailer_type">
+                            <label for="pet-id">Big Box Store</label>
+                        </div>
+                        <br />
+                        <div class="div-inp">
+                            <input value="Independent Brick & Mortar or Chain" class="reg-input2" type="checkbox" id="independent_id" name="retailer_type">
+                            <label for="independent_id">Independent Brick & Mortar or Chain</label>
+                        </div>
+                        <br />
+                        <div class="div-inp">
+                            <input value="other" class="checkbox reg-input2" type="checkbox" id="other-id" name="retailer_type">
+                            <label for="other-id">Other</label>
+                        </div>
+                        <br />
+                        <input style="  width: 96%; margin-top: 10px;" class="reg-campos" type="text" id="other_retailer_type" placeholder="Please explain" name="Other" disabled />
+                    </div>
+                    <br />
+                </div>
+            </div>
+            <hr class="hr-01" style="display:block; width: 90%;margin-left:auto;margin-right:auto;"/>
+            <div class="btn-filtro"><span class="txt-sent" onclick="createUser()">submit</span></div>
+        </div>
+
+        <hr class="hr-gris" />
+        <div id="confirm_msj" class="confirm-msj top01">
+            <div class="div-reg-company centere">
+                <img id="img-reg-confim" class="confir-img" src="img/logo-confirmacion.png" alt="logo-confirm" />
+                <p class="reg-tex-s01">Congratulations!</p>
+                <p class="reg-tex-s02">You signed up.Your account is now under review. Please allow 24-48 hours for us to activate your account.We will notify you by email . Thanks!</p>
+                <div class="button_done_reg">Done</div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .div-reg-company {
+            width: 96%;
+        }
+        .register-select {
+            padding: 4% 0%;
+        }
+        .ctn-conte-filter {
+            margin-top: 50px;
+        }
+        input:not([type=checkbox]), select {
+            -webkit-appearance: none;
+        }
+
+        input:not([type=checkbox]), select {
+            -webkit-border-radius: 0;
+            border-radius: 0;
+        }
+
+        .button_done_reg {
+            color: white;
+            background-color: rgb(88, 203, 199);
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #myImg1 {
+            width: 150px;
+            border-radius: 50%;
+            height: 150px;
+            box-shadow: 0px 0px 0px 3px rgb(157, 157, 157);
+            margin: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            overflow: hidden;
+        }
+
+        .div-inp {
+            display: inline-block;
+            width: 45%;
+            float: left;
+            margin: 1%;
+            background-color: #37BEAF;
+            border-radius: 5px;
+            padding: 1%;
+            height: 50px;
+        }
+        .reg-lb {
+            line-height: 18px;
+            color: black;
+            font-weight: 400;
+        }
+        input[type=checkbox]:checked + label {
+            color: rgb(255, 255, 255) !important;
+            font-style: normal;
+            font-size: large;
+            font-weight: 900;
+        }
+        .reg-campos:focus {
+            border:solid 2px #37BEAF;
+        }
+        input[type=checkbox] + label {
+            color: #FFFFFF;
+            font-size: large;
+            font-weight: 400;
+            line-height: 15px;
+        }
+        @media screen and (min-device-width: 520px) {
+            .reg-lb {
+                line-height: 18px;
+                color: black;
+                font-weight: 400;
+            }
+            .ctn-conte-filter {
+                margin-top: 30px !important;
+            }
+
+            .register-ti-div {
+                padding: 2%;
+            }
+
+            .register-select {
+                padding: 2% 2%;
+            }
+
+            .div-inp {
+                margin: 0px 0px 0px 0px;
+            }
+        }
+    </style>
+    <div id="adv">alert</div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+</script>
+    <script type="text/javascript" src="js/continent-countries-1.0-utf8.js"></script>
+</body>
+<script>
+    var url_service = "http://petretailapp-001-site1.btempurl.com/petretail";
+    //var url_service = "http://localhost:7850";
+
+
+    function getPhoto(source) {
+        navigator.camera.getPicture(onPhotoURISuccess, onFail, {
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY
+        });
+    }
+
+    function onPhotoURISuccess(imageURI) {
+        $('#myImg1').attr('src', "data:image/png;base64," + imageURI);
+
+    }
+    function onFail(message) {
+        alert('Failed because: ' + message);
+    }
+    //update code******
+    $(document).ready(function (e) {
+        $.urlParam = function (name) {
+            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results == null) {
+                return null;
+            }
+            else {
+                return results[1] || 0;
+            }
+        }
+        $.ajax({
+            url: url_service + "/Home/getUsuario",
+            type: "POST",
+            dataType: "json",
+            data: { 'nombre': $.urlParam('User') },
+            success: successFuncgetUsuario
+        });
+    });
+    function successFuncgetUsuario(data, status) {
+        $(".ti-pag").text('Profile');
+        back_link.href = "home.html?User=" + $.urlParam('User');
+        changePass.innerText = "Change Password";
+        var ret = data.retailer;
+        var types = ret.retailer_type.split(',');
+        for (i = 0; i < types.length; i++) {
+            $(':checkbox[value="' + types[i] + '"]').prop('checked', true);
+        }
+        try {
+            var ret_type_value = ret.retailer_type.split('|')[1];
+            if (ret.retailer_type.split('|').length > 1) {
+                other_retailer_type.value = ret_type_value;
+                $(':checkbox[value="other"]').prop('checked', true);
+                $("#other_retailer_type").prop('disabled', false);
+                old_username.value = data.result.usuario1;
+                username.value = data.result.usuario1;
+                pass.value = data.result.contraseña;
+                try {
+                    $('#email_notifications option[value="' + ret.retailer_email_notifications + '"]').attr('selected', 'selected');
+                } catch (ex) { }
+                myImg1.src = url_service + "/img_data" + data.result.foto.replace(/[\\"]/g, '/').split("img_data")[1];
+                name_retailer.value = ret.retailer_name;
+                website_retailer.value = ret.retailer_website;
+                email_retailer.value = ret.retailer_email;
+                tax_id_retailer.value = ret.retailer_tax_id;
+                location_manufactures.value = ret.retailer_location;
+            }
+        } catch (ex) { }
+
+    }
+    //*****************
+
+
+    function myFunction() {
+        location_manufactures.value = continent.value + "," + country.value + "," + state.value;
+    }
+
+    $(document).ready(function (e) {
+        //new dgContinentsCountries({
+        //    continentVal: document.getElementById("location_manufactures1").val,
+        //    countryVal: document.getElementById("location_manufactures2").val,
+        //    continent: document.getElementById("location_manufactures1"),
+        //    country: document.getElementById("location_manufactures2"),
+        //    change: true
+        //});
+
+        $(".checkbox").change(function () {
+            if (this.checked) {
+                $("#other_retailer_type").prop('disabled', false);
+            } else {
+                other_retailer_type.value = "";
+                $("#other_retailer_type").prop('disabled', true);
+            }
+        });
+        $('#menu-1').click(function () {
+            if (cssmenu.style.display == "block") {
+                cssmenu.style.display = "none";
+            } else {
+                cssmenu.style.display = "block";
+            }
+        });
+        windowheight = $(window).height();
+        t = windowheight - 102;
+        $(".ctn-ppal").css('height', t);
+    });
+
+    function setValues() {
+        var data;
+        var val = [];
+        $(':checkbox[name="retailer_type"]:checked').each(function (i) {
+            val[i] = $(this).val();
+        });
+        var st = "";
+        for (i = 0; i < val.length; i++) {
+            st = st + "," + val[i];
+        }
+        if (other_retailer_type.value != "") {
+            st = st + "|" + other_retailer_type.value;
+        }
+        var data = new Array({
+            'name_retailer': name_retailer.value,
+            'website_retailer': website_retailer.value,
+            'email_retailer': email_retailer.value,
+            'retailer_type': st,
+            'tax_id_retailer': tax_id_retailer.value,
+            'email_notifications': email_notifications.value,
+            'retailer_location': location_manufactures.value
+        });
+        return data;
+    }
+    function createUser() {
+        if (validaciones() == 1) {
+            if (pass.value == pass2.value) {
+                var data = new Array({
+                    'nombre': username.value,
+                    'tipo': "Retailer",
+                    'pass': pass.value,
+                    'antiguoNombre': old_username.value,
+                    'foto': myImg1.src
+                });
+                var dataRetail = setValues();
+                $.ajax({
+                    url: url_service + "/Home/crearUsuario",
+                    type: "POST",
+                    dataType: "json",
+                    traditional: true,
+                    data: {
+                        'action': "crearUsuario",
+                        'data': JSON.stringify(data),
+                        'dataManu': null,
+                        'dataRet': JSON.stringify(dataRetail)
+                    },
+                    success: successFuncCrearUsuario
+                });
+            }
+            else { al("The passwords are not same!!!"); } //navigator.notification.alert("The passwords are not same!!!", "", "Attention"); }
+        }
+    }
+    $(".button_done_reg").click(function () { setTimeout("location.replace('login.html')", 1); });
+    function successFuncCrearUsuario(data, status) {
+        if (data == "true") {
+            var msj = document.getElementById("confirm_msj");
+            msj.style.display = "block";
+            msj.style.width = "100%";
+            msj.style.height = "100%";
+            setTimeout("location.replace('login.html')", 7000);
+        } else {
+            if (data == "trueact") { location.replace('home.html?User=' + $.urlParam('User')); }
+            else { al("Please try again."); }
+        }// navigator.notification.alert(" please try again.", "", "Error"); }
+    }
+    function validaciones() {
+        if (name_retailer.value == "") {
+            al("Enter name of company");
+            //navigator.notification.alert("Enter name of company", "", "Notification");
+        } else if (username.value == "") {
+            al("Enter your username");
+            //navigator.notification.alert("Enter your username", "", "Notification");
+        } else if (email_retailer.value == "") {
+            al("Enter your email");
+            //navigator.notification.alert("Enter your email", "", "Notification");
+        } else if (pass.value == "") {
+            al("Enter your password");
+            //navigator.notification.alert("Enter your password", "", "Notification");
+        } else if (pass2.value == "") {
+            al("Confirm password");
+            //navigator.notification.alert("Confirm password", "", "Notification");
+        } else {
+            if (navigator.network.connection.type == Connection.NONE) {
+                al("Check your internet connection");
+                //navigator.notification.alert('Check your internet connection', '', 'Pet Retail');
+            } else {
+                return 1;
+            }
+        }
+    }
+    function al(txt) {
+        $('#adv').fadeIn(500);
+        $('#adv').fadeOut(5000);
+        adv.innerHTML = txt;
+    }
+ </script>
+</html>

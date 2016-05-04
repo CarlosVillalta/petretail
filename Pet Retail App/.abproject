@@ -1,0 +1,45 @@
+{
+  "ProjectName": "Pet Retail App",
+  "ProjectGuid": "1dba061e-d940-4446-95c9-c9953adc97e9",
+  "projectVersion": 1,
+  "AppIdentifier": "com.telerik.petreatailapp",
+  "DisplayName": "Pet Retail App",
+  "Author": "Avanza Media",
+  "Description": "Pet Retail App",
+  "BundleVersion": "1.1",
+  "AndroidVersionCode": "4",
+  "iOSDeviceFamily": [
+    "1",
+    "2"
+  ],
+  "iOSBackgroundMode": [],
+  "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
+  "FrameworkVersion": "4.0.0",
+  "AndroidPermissions": [
+    "android.permission.INTERNET",
+    "android.permission.RECEIVE_WAP_PUSH"
+  ],
+  "DeviceOrientations": [
+    "Portrait"
+  ],
+  "AndroidHardwareAcceleration": "True",
+  "iOSStatusBarStyle": "Default",
+  "Framework": "Cordova",
+  "WP8TileTitle": "",
+  "WP8Publisher": "",
+  "WP8Capabilities": [
+    "ID_CAP_NETWORKING",
+    "ID_CAP_WEBBROWSERCOMPONENT"
+  ],
+  "WP8Requirements": [],
+  "WP8PublisherID": "{25529d97-1543-4122-918d-86c90ac21651}",
+  "WP8ProductID": "{2c630006-678e-47af-a7d9-3b1fd1ff9f65}",
+  "WPSdk": "8.0",
+  "WP8PackageIdentityName": "1234Telerik.petshopapp",
+  "WP8WindowsPublisherName": "CN=Telerik",
+  "WP8SupportedResolutions": [
+    "ID_RESOLUTION_WVGA",
+    "ID_RESOLUTION_WXGA",
+    "ID_RESOLUTION_HD720P"
+  ]
+}
