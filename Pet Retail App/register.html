@@ -105,7 +105,7 @@
                     });
 
                 </script>
-                <label for="tax-id" class="reg-lb">Location</label>
+                <label for="tax-id" class="reg-lb">Street Address</label>
                 <input class="reg-campos" id="location_manufactures" type="text" style="margin-top: 3px; cursor: Default" readonly><br><br>
                 
                 <label for="tax-id" class="reg-lb" style="line-height: 18px;">Recieve email notifications?</label>
@@ -113,7 +113,7 @@
                     <option value="true">Yes</option>
                     <option value="false">No</option>
                 </select>
-                <div class="register-ti-div"><span class="ti-register">Type of Retailer</span></div>
+                <div class="register-ti-div" style="background-color:white;"><span style="color:#37BEAF;border-bottom: solid 2px;width: 94%;display: inline-block;font-weight: 700;" class="ti-register">Type of Retailer</span></div>
                 <div class="register-select">
                     <p class="select-retailer" style="color: rgb(108, 108, 108); font-weight: 600;">Select up to 2 that apply</p>
                     <div class="reg-select">
@@ -148,7 +148,7 @@
                 </div>
             </div>
             <hr class="hr-01" style="display:block; width: 90%;margin-left:auto;margin-right:auto;"/>
-            <div class="btn-filtro"><span class="txt-sent" onclick="createUser()">submit</span></div>
+            <div class="btn-filtro"><span class="txt-sent" onclick="createUser()">Submit</span></div>
         </div>
 
         <hr class="hr-gris" />
@@ -199,8 +199,16 @@
             margin-right: auto;
             overflow: hidden;
         }
-
         .div-inp {
+            display: inline-block;
+            width: 97%;
+            float: left;
+            margin: 1%;
+            border-radius: 5px;
+            padding: 1%;
+            height: 50px;
+        }
+        /*.div-inp {
             display: inline-block;
             width: 45%;
             float: left;
@@ -209,26 +217,26 @@
             border-radius: 5px;
             padding: 1%;
             height: 50px;
-        }
+        }*/
         .reg-lb {
             line-height: 18px;
             color: black;
             font-weight: 400;
         }
         input[type=checkbox]:checked + label {
-            color: rgb(255, 255, 255) !important;
-            font-style: normal;
-            font-size: large;
+            color: #37BEAF !important;
             font-weight: 900;
+            font-size: 1.1rem;
+            line-height: 30px;
         }
         .reg-campos:focus {
             border:solid 2px #37BEAF;
         }
         input[type=checkbox] + label {
-            color: #FFFFFF;
-            font-size: large;
+            color: #000000;
+            font-size: 1.1rem;
             font-weight: 400;
-            line-height: 15px;
+            line-height: 30px;
         }
         @media screen and (min-device-width: 520px) {
             .reg-lb {
@@ -464,3 +472,4 @@
     }
  </script>
 </html>
+
