@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -388,7 +388,7 @@
                 <div class="control" style="margin-bottom: 20px;">
                     <img onclick="viewCon()" style="width: 80%; max-width: 100px" alt="" src="img/joya2.png">
                 </div>
-                <div class="control" ">
+                <div class="control">
                     <img onclick="aww()" alt="" src="img/joya3.png">
                 </div>
             </div>
@@ -863,7 +863,7 @@
             $('#map').click(function () {
                 try {
                     location.replace("mappage.html?User=" + $.urlParam('User')
-                        + "&place=" + document.getElementById('MadeIn').innerText.split(': ')[1]
+                        + "&place=" + document.getElementById('manufacturesADD').innerText
                         + "&Product=" + $.urlParam('Product'));
                 } catch (ex) { }
             });
