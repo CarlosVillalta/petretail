@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -860,10 +860,10 @@
 
         var user = "";
         $(document).ready(function (e) {
-            $('#map').click(function () {
+            $('#RightSitios').click(function () {
                 try {
                     location.replace("mappage.html?User=" + $.urlParam('User')
-                        + "&place=" + document.getElementById('manufacturesADD').innerText()
+                        + "&place=" + document.getElementById('manufacturesADD').innerText
                         + "&Product=" + $.urlParam('Product'));
                 } catch (ex) { }
             });

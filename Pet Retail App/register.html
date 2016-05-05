@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -125,11 +125,11 @@
                         <div lass="reg-select">
                          	<div class="div-inp">
                                 <input id="r1" type="checkbox" name="notification" value="true" class="reg-input2">
-                                <label for="distri-id">Yes</label>
+                                <label for="r1">Yes</label>
                         	</div>
                             <div class="div-inp">
                                 <input id="r2" type="checkbox" name="notification" value="false" class="reg-input2">
-                                <label for="distri-id">No</label>
+                                <label for="r2">No</label>
                             </div>
                 		</div>
                     </div>
@@ -141,7 +141,7 @@
                     <option value="false">No</option>
                 </select>-->
                 
-                <div class="register-ti-div" style="background-color:white;">
+                <div class="register-ti-div" style="background-color:white;float: left;">
                     <span style="color:#37BEAF;border-bottom: solid 2px;width: 94%;display: inline-block;font-weight: 700;" class="ti-register">Type of Retailer</span>
                 </div>
                 <div class="register-select">
@@ -382,9 +382,17 @@
                 other_retailer_type.value = ret_type_value;
                 $(':checkbox[value="other"]').prop('checked', true);
                 $("#other_retailer_type").prop('disabled', false);
+            }
                 old_username.value = data.result.usuario1;
                 username.value = data.result.usuario1;
                 pass.value = data.result.contraseña;
+                try {
+                    if (ret.retailer_email_notifications == true) {
+                        $(':checkbox[id="r1"]').prop('checked', true);
+                    } else {
+                        $(':checkbox[id="r2"]').prop('checked', true);
+                    }
+                } catch (ex) { alert(ex); }
                 try {
                     $('#email_notifications option[value="' + ret.retailer_email_notifications + '"]').attr('selected', 'selected');
                 } catch (ex) { }
@@ -394,8 +402,8 @@
                 email_retailer.value = ret.retailer_email;
                 tax_id_retailer.value = ret.retailer_tax_id;
                 location_manufactures.value = ret.retailer_location;
-            }
-        } catch (ex) { }
+           
+        } catch (ex) { alert(ex); }
 
     }
     //*****************
@@ -447,16 +455,27 @@
         if (other_retailer_type.value != "") {
             st = st + "|" + other_retailer_type.value;
         }
-        var data = new Array({
-            'name_retailer': name_retailer.value,
-            'website_retailer': website_retailer.value,
-            'email_retailer': email_retailer.value,
-            'retailer_type': st,
-            'tax_id_retailer': tax_id_retailer.value,
-            'email_notifications': email_notifications.value,
-            'retailer_location': location_manufactures.value
-        });
-        return data;
+        var email = "";
+        try {
+            if (r1.checked == true) {
+                email = true;
+            } else {
+                if (r2.checked == true) {
+                    email = false;
+                }
+            }
+
+            var data = new Array({
+                'name_retailer': name_retailer.value,
+                'website_retailer': website_retailer.value,
+                'email_retailer': email_retailer.value,
+                'retailer_type': st,
+                'tax_id_retailer': tax_id_retailer.value,
+                'email_notifications': email,
+                'retailer_location': location_manufactures.value
+            });
+            return data;
+        } catch (ex) { al("Complete recieve email notification."); }
     }
     function createUser() {
         if (validaciones() == 1) {
