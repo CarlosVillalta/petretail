@@ -1030,7 +1030,7 @@ input[type="checkbox"] {
   margin-top: 0;
 }
 .reg-campos {
-    width: 60%;
+    width: 90%;
     min-width: 100px;
     margin-bottom: 10px;
     border: solid 2px #919191;
@@ -1042,16 +1042,18 @@ input[type="checkbox"] {
     float: left;
     border-radius: 5px !important;
 }
+
 .reg-lb {
     font-size: 1rem;
     font-weight: 200;
     display: inline-block;
-    width: 34%;
+  
     float: left;
     text-align: right;
     padding-right: 2%;
     line-height: 40px;
 }
+
 .div-reg-company{
   padding: 1%;
   background-color: white;
