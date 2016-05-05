@@ -23,51 +23,62 @@
                 </div>
             </a>
             <span id="usS" class="ti-pag" style="color: white;font-weight: 600;">Sign Up!</span>
-            <!--<div class="icon_bone"></div>-->
-            <!--<div class="buscar-page" onclick=""><img id="Img2" src="img/lupa.png" /></div>-->
-            <!--<div class="log-page" onclick="showHideFilter()"><img id="imh-home" src="img/filtro.png" /></div>-->
-            <!--<div class="chat-page" onclick=""><img id="Img1" src="img/chat.png" /></div>-->
+            <!--<div class="icon_bone"></div>
+            <div class="buscar-page" onclick=""><img id="Img2" src="img/lupa.png" /></div>
+            <div class="log-page" onclick="showHideFilter()"><img id="imh-home" src="img/filtro.png" /></div>
+            <div class="chat-page" onclick=""><img id="Img1" src="img/chat.png" /></div>-->
         </div>
         <div class="ctn-conte-filter">
             <!--<div class="div-register-tittle"><span class="ti-pag">Sign up!</span></div>-->
             
 
-            <div class="register-ti-div"><span class="ti-register">About the company</span></div>
+            <div class="register-ti-div">
+                <span class="ti-register">About the company</span>
+            </div>
             <div class="div-reg-company" style="margin-top: 5%;">
-                <img id="myImg1" onclick="getPhoto()" src="" alt="" />
                 <label style="margin-bottom: 25px;width: 100%;text-align: center;" for="name-comp" class="reg-lb">Avatar image</label>
-
+                <img id="myImg1" onclick="getPhoto()" src="" alt="" /><br/>
+                
                 <label for="name-comp" class="reg-lb">Name of Company</label>
                 <input class="reg-campos" type="text" value="" id="name_retailer" name="name-comp" />
-                <label for="user" class="reg-lb">Username</label>
+                
+                <label for="user" class="reg-lb">Name</label>
                 <input class="reg-campos" type="text" value="" id="username" name="user" />
                 <input class="reg-campos" type="text" value="" id="old_username" name="user" style="display: none;" />
+                
                 <label for="email" class="reg-lb">Email</label>
                 <input class="reg-campos" type="email" value="" id="email_retailer" name="email" />
+                
                 <label id="changePass" for="psw" class="reg-lb">Password</label>
                 <input class="reg-campos" type="password" value="" id="pass" name="psw" />
+                
                 <label for="copsw" class="reg-lb">Confirm Password</label>
                 <input class="reg-campos" type="password" value="" id="pass2" name="copsw" />
+                
                 <label for="website" class="reg-lb">Company Website</label>
                 <input class="reg-campos" type="text" value="" id="website_retailer" name="website" />
+                
                 <label for="location_manufactures" class="reg-lb" style="width: 100%; float: left;"></label>
                 <label for="tax-id" class="reg-lb">Tax ID #</label>
+                
                 <input class="reg-campos" type="text" value="" id="tax_id_retailer" name="tax-id" />
                 <!--<input class="reg-campos" style="height: 40px; width: 50%; float: left;" id="location_manufactures1" type="text">
                 <input class="reg-campos" style="height: 40px; width: 50%; float: right; margin-right: -1%;" id="location_manufactures2" type="text" onchange="myFunction()">
                 -->
+                
                 <label class="reg-lb">Continent:</label>
-                <select class="reg-campos" id="continent" name="continent" style="height: 42px; width: 63%; float: left;">
+                <select class="reg-campos" id="continent" name="continent" style="height: 42px; width:93%;">
                     <option value="000">-Select Continent-</option>
                 </select>
+                
                 <label class="reg-lb">State:</label>
-                <select class="reg-campos" id="country" name="country" onchange="myFunction()" style="height: 42px; width: 63%; float: left;">
+                <select class="reg-campos" id="country" name="country" onchange="myFunction()" style="height: 42px; width:93%;">
                     <option value="000">-Select Country-</option>
                 </select>
+                
                 <label class="reg-lb">State or Province:</label>
-
                 <!-- <select class="reg-campos"  id="state" name="state" onchange="myFunction()" style=" min-height: 40px; width: 100%;"> -->
-                <select class="reg-campos" id="state" name="state" onchange="myFunction()" style="height: 42px; width: 63%; float: left;">
+                <select class="reg-campos" id="state" name="state" onchange="myFunction()" style="height: 42px; width:93%;">
                     <option value="000">-State or Province-</option>
                 </select>
                 <script src="js/location_Cont_State_City.js"></script>
@@ -106,14 +117,33 @@
 
                 </script>
                 <label for="tax-id" class="reg-lb">Street Address</label>
-                <input class="reg-campos" id="location_manufactures" type="text" style="margin-top: 3px; cursor: Default" readonly><br><br>
+                <input class="reg-campos" id="location_manufactures" type="text" style="margin-top: 3px; cursor: Default" readonly><br/>
                 
-                <label for="tax-id" class="reg-lb" style="line-height: 18px;">Recieve email notifications?</label>
-                <select name="" id="email_notifications" class="reg-campos" style="height: 42px; width: 63%; float: left;">
+                <label class="reg-lb">Recieve email notifications?</label><br><br>
+                <!--<div name="gender_group" id="email_notifications" class="reg-campos">-->
+                	<div class="register-select">
+                        <div lass="reg-select">
+                         	<div class="div-inp">
+                                <input id="r1" type="checkbox" name="notification" value="true" class="reg-input2">
+                                <label for="distri-id">Yes</label>
+                        	</div>
+                            <div class="div-inp">
+                                <input id="r2" type="checkbox" name="notification" value="false" class="reg-input2">
+                                <label for="distri-id">No</label>
+                            </div>
+                		</div>
+                    </div>
+                    
+                <!--</div>-->                
+                
+                <!--<select name="" id="email_notifications" class="reg-campos" style="height: 42px; width: 63%; float: left;">
                     <option value="true">Yes</option>
                     <option value="false">No</option>
-                </select>
-                <div class="register-ti-div" style="background-color:white;"><span style="color:#37BEAF;border-bottom: solid 2px;width: 94%;display: inline-block;font-weight: 700;" class="ti-register">Type of Retailer</span></div>
+                </select>-->
+                
+                <div class="register-ti-div" style="background-color:white;">
+                    <span style="color:#37BEAF;border-bottom: solid 2px;width: 94%;display: inline-block;font-weight: 700;" class="ti-register">Type of Retailer</span>
+                </div>
                 <div class="register-select">
                     <p class="select-retailer" style="color: rgb(108, 108, 108); font-weight: 600;">Select up to 2 that apply</p>
                     <div class="reg-select">
@@ -282,6 +312,23 @@
     <script type="text/javascript" src="js/continent-countries-1.0-utf8.js"></script>
 </body>
 <script>
+    var checkedT = $("#r1");
+    var checkedF = $("#r2");
+    checkedT.on('change', function(){
+        if(checkedT.is(':checked')){
+            checkedF.prop('checked', false);
+        }else{
+            checkedF.prop('checked', true);
+        }
+    });
+    checkedF.on('change', function(){
+        if(checkedF.is(':checked')){
+            checkedT.prop('checked', false);
+        }else{
+            checkedF.prop('checked', true);
+        }
+    });
+    
     var url_service = "http://petretailapp-001-site1.btempurl.com/petretail";
     //var url_service = "http://localhost:7850";
 

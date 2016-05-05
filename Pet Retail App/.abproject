@@ -6,7 +6,7 @@
   "DisplayName": "Pet Retail App",
   "Author": "Avanza Media",
   "Description": "Pet Retail App",
-  "BundleVersion": "1.1",
+  "BundleVersion": "1.2",
   "AndroidVersionCode": "4",
   "iOSDeviceFamily": [
     "1",
