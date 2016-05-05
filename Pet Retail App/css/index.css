@@ -919,12 +919,13 @@ input[type=checkbox] + label {
   color: #545454;
   font-size: large;
   font-weight: 400;
-} 
+}
 input[type=checkbox]:checked + label {
-  color: rgb(43, 181, 155) !important;
-  font-style: normal;
-  font-size: large;
-} 
+    color: #37BEAF !important;
+    font-style: normal;
+    font-size: large;
+    font-weight: 700;
+}
 .btn-filtro {
   text-align: center;
   margin-top: 20px;
