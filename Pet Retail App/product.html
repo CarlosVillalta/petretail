@@ -863,7 +863,7 @@
             $('#map').click(function () {
                 try {
                     location.replace("mappage.html?User=" + $.urlParam('User')
-                        + "&place=" + document.getElementById('manufacturesADD').innerText
+                        + "&place=" + document.getElementById('manufacturesADD').innerText()
                         + "&Product=" + $.urlParam('Product'));
                 } catch (ex) { }
             });
